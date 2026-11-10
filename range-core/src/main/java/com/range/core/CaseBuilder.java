@@ -16,6 +16,7 @@ public final class CaseBuilder {
         String tool = first(in.get("tool"), "");
         String mount = first(in.get("mount"), "");
         String serverVersion = first(in.get("serverVersion"), runtime.getServerVersion());
+        serverVersion = ServerDetector.sdkServerVersion(server, serverVersion);
         boolean jakarta = runtime.isJakarta();
         if (in.containsKey("jakarta")) {
             jakarta = Boolean.parseBoolean(in.get("jakarta"));
@@ -43,8 +44,7 @@ public final class CaseBuilder {
             }
         }
 
-        String shellClassName = "com.range.s" + caseId;
-        String injectorClassName = "com.range.i" + caseId;
+        boolean obfuscate = Boolean.parseBoolean(first(in.get("obfuscate"), "false"));
         Map<String, String> params = new LinkedHashMap<String, String>();
         List<ParamSpec> specs = ToolParams.forTool(tool);
         for (ParamSpec spec : specs) {
@@ -54,11 +54,10 @@ public final class CaseBuilder {
             }
             params.put(spec.getName(), value);
         }
-        params.put("shellClassName", shellClassName);
 
         int jre = runtime.getClassVersion() > 0 ? runtime.getClassVersion() : 52;
         return new ShellCase(caseId, server, serverVersion, jakarta, mount, tool, params, packer,
-                urlPattern, shellClassName, injectorClassName, agent, jre);
+                urlPattern, obfuscate, agent, jre);
     }
 
     private static String defaultFor(ParamSpec spec, String caseId) {

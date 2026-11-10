@@ -14,14 +14,13 @@ public final class ShellCase {
     private final Map<String, String> params;
     private final String packer;
     private final String urlPattern;
-    private final String shellClassName;
-    private final String injectorClassName;
+    private final boolean obfuscate;
     private final boolean agent;
     private final int targetJreVersion;
 
     public ShellCase(String caseId, String server, String serverVersion, boolean jakarta, String mount, String tool,
-                     Map<String, String> params, String packer, String urlPattern, String shellClassName,
-                     String injectorClassName, boolean agent, int targetJreVersion) {
+                     Map<String, String> params, String packer, String urlPattern, boolean obfuscate,
+                     boolean agent, int targetJreVersion) {
         this.caseId = caseId;
         this.server = server;
         this.serverVersion = serverVersion;
@@ -31,8 +30,7 @@ public final class ShellCase {
         this.params = Collections.unmodifiableMap(new LinkedHashMap<String, String>(params));
         this.packer = packer;
         this.urlPattern = urlPattern;
-        this.shellClassName = shellClassName;
-        this.injectorClassName = injectorClassName;
+        this.obfuscate = obfuscate;
         this.agent = agent;
         this.targetJreVersion = targetJreVersion;
     }
@@ -73,12 +71,8 @@ public final class ShellCase {
         return urlPattern;
     }
 
-    public String getShellClassName() {
-        return shellClassName;
-    }
-
-    public String getInjectorClassName() {
-        return injectorClassName;
+    public boolean isObfuscate() {
+        return obfuscate;
     }
 
     public boolean isAgent() {

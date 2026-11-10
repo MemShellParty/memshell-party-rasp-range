@@ -14,6 +14,10 @@ tasks.withType(JavaCompile).configureEach {
 dependencies {
     implementation project(':range-core')
     providedCompile 'jakarta.servlet:jakarta.servlet-api:6.0.0'
+    // The SDK Valve template extends org.apache.catalina.Valve; keep that type
+    // inside the webapp loader so the generator can resolve it. Tomcat's loader
+    // delegates the package to catalina.jar, so the stub does not shadow it.
+    runtimeOnly "io.github.reajason:memshell-party-stub-tomcat:3.0.0"
 }
 
 war {

@@ -36,7 +36,7 @@ public final class CatalogService {
                 if (ShellTool.Custom.equals(entry.getKey())) {
                     continue;
                 }
-                List<String> mounts = canonical(entry.getValue(), runtime.isJakarta());
+                List<String> mounts = canonical(server, entry.getValue(), runtime.isJakarta());
                 if (!mounts.isEmpty()) {
                     matrix.put(entry.getKey(), mounts);
                 }
@@ -66,10 +66,10 @@ public final class CatalogService {
             return new ArrayList<String>();
         }
         List<String> raw = tools.get(tool);
-        return raw == null ? new ArrayList<String>() : canonical(raw, runtime.isJakarta());
+        return raw == null ? new ArrayList<String>() : canonical(server, raw, runtime.isJakarta());
     }
 
-    private static List<String> canonical(List<String> raw, boolean jakarta) {
+    private static List<String> canonical(String server, List<String> raw, boolean jakarta) {
         List<String> mounts = new ArrayList<String>();
         for (String mount : raw) {
             boolean prefixed = mount.startsWith("Jakarta");

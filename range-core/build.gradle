@@ -16,7 +16,11 @@ dependencies {
     api "io.github.reajason:memshell-party-api:3.1.0"
     api "io.github.reajason:memshell-party-packer:3.1.0"
     api("io.github.reajason:memshell-party-server-servlet:3.1.0") {
-        // Signature stubs must not shadow the real container classes in the range artifact.
+        // Both stubs stay off the shared classpath. Spring Boot's flat loader
+        // would let the Tomcat stub shadow tomcat-embed-core classes; the WAR
+        // modules add the Tomcat stub back, where the container loader behaves
+        // correctly. Jetty stubs are never bundled because the range ships the
+        // real Jetty classes.
         exclude group: 'io.github.reajason', module: 'memshell-party-stub-tomcat'
         exclude group: 'io.github.reajason', module: 'memshell-party-stub-jetty'
     }

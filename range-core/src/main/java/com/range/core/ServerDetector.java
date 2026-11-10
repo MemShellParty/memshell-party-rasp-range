@@ -65,6 +65,28 @@ public final class ServerDetector {
         return version.isEmpty() ? "unknown" : version;
     }
 
+    /**
+     * The SDK maps a handful of coarse Jetty generations onto different Handler
+     * templates. Raw container strings such as 9.4.19.v20190610 are rejected,
+     * so collapse them to the generations the SDK knows: 6, 7+ (Jetty 7-11) and 12.
+     */
+    public static String sdkServerVersion(String server, String version) {
+        if (!"Jetty".equals(server) && !"Jetty5".equals(server)) {
+            return version;
+        }
+        if (version == null) {
+            return "7+";
+        }
+        String value = version.trim();
+        if (value.startsWith("6")) {
+            return "6";
+        }
+        if (value.startsWith("12")) {
+            return "12";
+        }
+        return "7+";
+    }
+
     public static List<String> servletServers() {
         return Arrays.asList("Tomcat", "Jetty", "Jetty5", "Undertow", "JBoss", "Resin", "Resin2",
                 "WebLogic", "WebSphere", "GlassFish", "TongWeb", "BES", "InforSuite", "Apusic");

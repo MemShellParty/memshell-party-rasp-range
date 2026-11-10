@@ -4,6 +4,7 @@ import com.reajason.javaweb.memshell.MemShellGenerator;
 import com.reajason.javaweb.memshell.MemShellResult;
 import com.reajason.javaweb.memshell.PackerRegistry;
 import com.reajason.javaweb.memshell.config.InjectorConfig;
+import com.reajason.javaweb.memshell.config.ObfuscationConfig;
 import com.reajason.javaweb.memshell.config.ShellConfig;
 
 import java.util.ArrayList;
@@ -22,7 +23,9 @@ public final class InjectService {
             String payload = PackerRegistry.getInstance().pack(shellCase.getPacker(), result);
             return new GenerateResult(shellCase.getCaseId(), shellCase.getServer(), shellCase.getMount(),
                     shellCase.getTool(), shellCase.getMethod(), shellCase.getPacker(), payload,
-                    payload == null ? 0 : payload.length(), null, ConnectionInfo.from(shellCase, baseUrl));
+                    payload == null ? 0 : payload.length(), null,
+                    ConnectionInfo.from(shellCase, baseUrl, result.getShellClassName(), result.getInjectorClassName()),
+                    result.getShellClassName(), result.getInjectorClassName());
         } catch (Throwable t) {
             return new GenerateResult(shellCase.getCaseId(), shellCase.getServer(), shellCase.getMount(),
                     shellCase.getTool(), shellCase.getMethod(), shellCase.getPacker(), null, 0,
@@ -37,13 +40,18 @@ public final class InjectService {
                     shellCase.getTool(), shellCase.getMethod(), shellCase.getPacker(), null, 0,
                     false, false, false, generated.getError(), null, 0, generated.getConnection());
         }
-        InjectResult result = injectPayload(shellCase, generated.getPayloadBase64(), baseUrl);
+        InjectResult result = injectPayload(shellCase, generated.getPayloadBase64(), baseUrl,
+                generated.getInjectorClassName(), generated.getConnection());
         history.add(result);
         return result;
     }
 
     public InjectResult injectPayload(ShellCase shellCase, String payload, String baseUrl) {
-        ConnectionInfo connection = ConnectionInfo.from(shellCase, baseUrl);
+        return injectPayload(shellCase, payload, baseUrl, null, ConnectionInfo.from(shellCase, baseUrl));
+    }
+
+    private InjectResult injectPayload(ShellCase shellCase, String payload, String baseUrl,
+                                       String injectorClassName, ConnectionInfo connection) {
         if (payload == null || payload.trim().isEmpty()) {
             return new InjectResult(shellCase.getCaseId(), shellCase.getServer(), shellCase.getMount(),
                     shellCase.getTool(), shellCase.getMethod(), shellCase.getPacker(), null, 0,
@@ -60,12 +68,13 @@ public final class InjectService {
                     (System.nanoTime() - start) / 1000000L, connection);
         } else {
             ClassInjector.Outcome outcome = ClassInjector.load(payload, shellCase.getPacker(),
-                    shellCase.getInjectorClassName());
+                    injectorClassName);
             result = new InjectResult(shellCase.getCaseId(), shellCase.getServer(), shellCase.getMount(),
                     shellCase.getTool(), shellCase.getMethod(), shellCase.getPacker(), payload, payload.length(),
                     outcome.isDefined(), outcome.isInstantiated(), false, outcome.getError(), outcome.getWarning(),
                     (System.nanoTime() - start) / 1000000L, connection);
         }
+        logOutcome(shellCase, result);
         history.add(result);
         return result;
     }
@@ -88,15 +97,33 @@ public final class InjectService {
                 .shellType(shellCase.getMount())
                 .jakarta(shellCase.isJakarta())
                 .targetJreVersion(shellCase.getTargetJreVersion())
+                .obfuscation(shellCase.isObfuscate() ? ObfuscationConfig.enabled() : ObfuscationConfig.defaults())
                 .build();
+        // Class names stay unset so the SDK samples them per generation.
         InjectorConfig injectorConfig = InjectorConfig.builder()
                 .urlPattern(shellCase.getUrlPattern())
-                .shellClassName(shellCase.getShellClassName())
-                .injectorClassName(shellCase.getInjectorClassName())
                 .build();
         Map<String, String> params = new LinkedHashMap<String, String>(shellCase.getParams());
-        params.put("shellClassName", shellCase.getShellClassName());
         return generator.generate(shellConfig, injectorConfig, params);
+    }
+
+    private static void logOutcome(ShellCase shellCase, InjectResult result) {
+        StringBuilder line = new StringBuilder("[range] ")
+                .append(shellCase.getCaseId()).append(' ')
+                .append(shellCase.getTool()).append('/').append(shellCase.getMount());
+        if (result.isAttached()) {
+            line.append(" attached");
+        } else if (result.isDefined()) {
+            line.append(" defined");
+        } else {
+            line.append(" failed");
+        }
+        line.append(" in ").append(result.getElapsedMs()).append("ms");
+        if (result.getError() != null && !result.getError().isEmpty()) {
+            line.append(" error=").append(result.getError());
+        }
+        System.out.println(line);
+        System.out.flush();
     }
 
     private static String describe(Throwable t) {

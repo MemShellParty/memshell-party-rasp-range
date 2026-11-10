@@ -1,0 +1,3 @@
+# Jetty 9.4 (javax) with the range WAR deployed at /range.
+FROM harbor.corp.boundaryx.net/cloudrasp/jetty:9.4.19.v20190610
+COPY range-war-javax-0.1.0.war /usr/local/jetty/webapps/range.war

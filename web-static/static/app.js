@@ -222,7 +222,8 @@
       server: el('server').value,
       tool: el('tool').value,
       mount: el('mount').value,
-      packer: el('packer').value
+      packer: el('packer').value,
+      obfuscate: el('obfuscate').checked
     };
     Array.prototype.forEach.call(el('params').querySelectorAll('[data-name]'), function (input) {
       body[input.dataset.name] = input.value;
@@ -376,7 +377,8 @@
   function batch() {
     var body = {
       server: el('server').value,
-      includeAgent: el('includeAgent').checked
+      includeAgent: el('includeAgent').checked,
+      obfuscate: el('obfuscate').checked
     };
     busy(true, '批量注入中，完成前请勿关闭页面');
     request('inject/batch', {

@@ -28,6 +28,15 @@ public final class ConnectionInfo {
     }
 
     public static ConnectionInfo from(ShellCase shellCase, String baseUrl) {
+        return from(shellCase, baseUrl, null, null);
+    }
+
+    /**
+     * Class names come from the generated {@code MemShellResult}: the SDK samples them per
+     * generation, so they are only known after the shell is built.
+     */
+    public static ConnectionInfo from(ShellCase shellCase, String baseUrl, String shellClassName,
+                                      String injectorClassName) {
         String headerName = shellCase.getParams().get("headerName");
         String headerValue = shellCase.getParams().get("headerValue");
         String paramName = shellCase.getParams().get("paramName");
@@ -37,7 +46,7 @@ public final class ConnectionInfo {
                 : (baseUrl == null ? "" : baseUrl) + shellCase.getUrlPattern();
         return new ConnectionInfo(url, shellCase.getUrlPattern(), shellCase.getParams().get("pass"),
                 shellCase.getParams().get("key"), headerName, headerValue, paramName,
-                shellCase.getInjectorClassName(), shellCase.getShellClassName(), trigger);
+                injectorClassName, shellClassName, trigger);
     }
 
     public String getUrl() {

@@ -1,0 +1,3 @@
+# BES 9.5.5 (javax) with the range WAR hot-deployed at /range.
+FROM harbor.corp.boundaryx.net/cloudrasp/bes:9.5.5
+COPY range-war-javax-0.1.0.war /opt/bes/hotdeploy/range.war

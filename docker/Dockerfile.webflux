@@ -1,0 +1,6 @@
+# Spring WebFlux / Boot 3.3 (Netty) running the range fat jar.
+FROM docker.1ms.run/library/eclipse-temurin:17-jdk
+WORKDIR /app
+COPY range-webflux-0.1.0.jar /app/range.jar
+EXPOSE 8080
+CMD ["java", "-jar", "/app/range.jar"]
