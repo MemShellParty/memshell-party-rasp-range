@@ -1,0 +1,63 @@
+plugins {
+    id 'java'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.release = 17
+}
+
+def artifactsDir = layout.buildDirectory.dir('artifacts')
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.3'
+    testImplementation 'org.testcontainers:testcontainers:1.20.4'
+    testImplementation 'org.testcontainers:junit-jupiter:1.20.4'
+    testImplementation 'com.fasterxml.jackson.core:jackson-databind:2.17.2'
+    testRuntimeOnly 'org.slf4j:slf4j-simple:2.0.13'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.10.3'
+}
+
+tasks.register('copyArtifacts', Copy) {
+    dependsOn ':range-war-javax:war',
+            ':range-war-jakarta:war',
+            ':range-springmvc-javax:bootJar',
+            ':range-springmvc-jakarta:bootJar',
+            ':range-webflux:bootJar'
+    into artifactsDir
+    from(project(':range-war-javax').tasks.named('war')) {
+        rename { 'range-war-javax.war' }
+    }
+    from(project(':range-war-jakarta').tasks.named('war')) {
+        rename { 'range-war-jakarta.war' }
+    }
+    from(project(':range-springmvc-javax').tasks.named('bootJar')) {
+        rename { 'range-springmvc-javax.jar' }
+    }
+    from(project(':range-springmvc-jakarta').tasks.named('bootJar')) {
+        rename { 'range-springmvc-jakarta.jar' }
+    }
+    from(project(':range-webflux').tasks.named('bootJar')) {
+        rename { 'range-webflux.jar' }
+    }
+}
+
+tasks.named('test') {
+    dependsOn tasks.named('copyArtifacts')
+    systemProperty 'artifacts.dir', artifactsDir.get().asFile.absolutePath
+    environment 'TESTCONTAINERS_RYUK_DISABLED', 'true'
+    // Docker 24+ rejects the docker-java default API version 1.32.
+    systemProperty 'api.version', '1.41'
+    useJUnitPlatform()
+    include '**/*Test.class', '**/*IT.class'
+    maxHeapSize = '1g'
+    testLogging {
+        events 'started', 'passed', 'failed', 'skipped'
+        exceptionFormat = 'full'
+        showStandardStreams = true
+    }
+}

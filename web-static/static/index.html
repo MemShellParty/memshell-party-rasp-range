@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>内存马注入靶场</title>
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div>
+    <h1>内存马注入靶场</h1>
+    <p class="subtitle">生成与注入全部由靶场自身完成，不依赖外部服务</p>
+  </div>
+  <div id="runtime" class="runtime">加载中</div>
+</header>
+
+<main>
+  <section class="panel">
+    <div class="panel-head">
+      <h2>覆盖矩阵</h2>
+      <div class="controls">
+        <label>目标服务
+          <select id="server"></select>
+        </label>
+        <label class="check"><input type="checkbox" id="includeAgent" checked> 包含 Agent</label>
+      </div>
+    </div>
+    <div id="matrix" class="matrix"></div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2>单个注入</h2>
+      <span class="hint">点击上方矩阵里的挂载类型可直接选中</span>
+    </div>
+    <div class="controls">
+      <label>工具 <select id="tool"></select></label>
+      <label>挂载 <select id="mount"></select></label>
+      <label>Packer <select id="packer"></select></label>
+    </div>
+    <div id="params" class="params"></div>
+    <div class="controls actions">
+      <button id="inject" class="primary">注入</button>
+      <button id="generate" class="secondary">仅生成</button>
+      <button id="batch" class="secondary">批量注入当前服务</button>
+      <button id="clear" class="link">清空结果</button>
+      <span id="status" class="status"></span>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2>结果</h2>
+      <span id="summary" class="hint"></span>
+    </div>
+    <div id="results" class="results">
+      <p class="empty">还没有执行记录</p>
+    </div>
+  </section>
+</main>
+
+<script src="./app.js"></script>
+</body>
+</html>

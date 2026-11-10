@@ -1,0 +1,23 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        mavenCentral()
+    }
+}
+
+rootProject.name = 'memshell-range'
+
+include 'range-core'
+include 'range-war-javax'
+include 'range-war-jakarta'
+include 'range-springmvc-javax'
+include 'range-springmvc-jakarta'
+include 'range-webflux'
+include 'integration-test'

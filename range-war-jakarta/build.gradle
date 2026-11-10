@@ -1,0 +1,24 @@
+plugins {
+    id 'war'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.release = 17
+}
+
+dependencies {
+    implementation project(':range-core')
+    providedCompile 'jakarta.servlet:jakarta.servlet-api:6.0.0'
+}
+
+war {
+    archiveBaseName = 'range-war-jakarta'
+    from("$rootDir/web-static/static") {
+        into '/'
+    }
+}

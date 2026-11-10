@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.3.5'
+    id 'io.spring.dependency-management' version '1.1.6'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.release = 17
+}
+
+dependencies {
+    implementation project(':range-core')
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+}
+
+sourceSets.main.resources.srcDir "$rootDir/web-static"
+
+springBoot {
+    mainClass = 'com.range.springmvc.RangeApplication'
+}
+
+jar {
+    enabled = false
+}
+
+bootJar {
+    archiveBaseName = 'range-springmvc-jakarta'
+}

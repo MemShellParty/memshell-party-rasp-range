@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.18'
+    id 'io.spring.dependency-management' version '1.1.6'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.release = 11
+}
+
+dependencies {
+    implementation project(':range-core')
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+}
+
+sourceSets.main.resources.srcDir "$rootDir/web-static"
+
+springBoot {
+    mainClass = 'com.range.springmvc.RangeApplication'
+}
+
+jar {
+    enabled = false
+}
+
+bootJar {
+    archiveBaseName = 'range-springmvc-javax'
+    // The SDK agent packer locates ASM through its CodeSource; unpack it so the
+    // nested Boot 2.x jar URL does not reach that lookup.
+    requiresUnpack { it.name.startsWith('asm-') }
+}

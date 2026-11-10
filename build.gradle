@@ -1,0 +1,10 @@
+allprojects {
+    group = 'com.range'
+    version = '0.1.0'
+}
+
+subprojects {
+    tasks.withType(JavaCompile).configureEach {
+        options.encoding = 'UTF-8'
+    }
+}
