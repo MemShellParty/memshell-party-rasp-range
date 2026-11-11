@@ -2,7 +2,7 @@
   "info": {
     "name": "memshell-range · 生成 (generate)",
     "_postman_id": "ace19db2-b264-5fa5-855b-3f7285d04f5d",
-    "description": "按工具与挂载类型逐个调用 `/entrypoint?mode=generate`，只生成并返回 Base64，不加载。\n\n使用步骤与注入集合相同。集合级测试断言 HTTP 200 且 `payloadBase64` 非空。响应里的 `shellClassName` 和 `injectorClassName` 是本次采样到的类名，每次都可能不同。\n",
+    "description": "按工具与挂载类型逐个调用 `/entrypoint?mode=generate`，只生成并返回 Base64，不加载。\n\n使用步骤与注入集合相同。集合变量 `obfuscate` 默认 `false`，改成 `true` 就是混淆路径。集合级测试断言 HTTP 200 且 `payloadBase64` 非空。响应里的 `shellClassName` 和 `injectorClassName` 是本次采样到的类名，每次都可能不同。\n",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "event": [
@@ -51,6 +51,11 @@
       "key": "webfluxBaseUrl",
       "value": "http://127.0.0.1:8080",
       "type": "string"
+    },
+    {
+      "key": "obfuscate",
+      "value": "false",
+      "type": "string"
     }
   ],
   "item": [
@@ -68,7 +73,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=Listener&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=Listener&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -91,6 +96,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -104,7 +113,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=Filter&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=Filter&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -127,6 +136,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -140,7 +153,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=Valve&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=Valve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -163,6 +176,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -176,7 +193,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=ProxyValve&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=ProxyValve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -199,6 +216,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -212,7 +233,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=Servlet&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=Servlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -235,6 +256,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -248,7 +273,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=AgentFilterChain&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=AgentFilterChain&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -271,6 +296,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -284,7 +313,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=AgentContextValve&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=AgentContextValve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -307,6 +336,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -320,7 +353,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=WebSocket&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=WebSocket&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -343,6 +376,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -356,7 +393,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=RawWebSocket&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=RawWebSocket&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -379,6 +416,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -392,7 +433,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=Upgrade&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=Upgrade&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -415,6 +456,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -434,7 +479,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=GodzillaSession&mount=Listener&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=GodzillaSession&mount=Listener&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -457,6 +502,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -470,7 +519,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=GodzillaSession&mount=Filter&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=GodzillaSession&mount=Filter&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -493,6 +542,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -506,7 +559,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=GodzillaSession&mount=Valve&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=GodzillaSession&mount=Valve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -529,6 +582,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -542,7 +599,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=GodzillaSession&mount=ProxyValve&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=GodzillaSession&mount=ProxyValve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -565,6 +622,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -578,7 +639,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=GodzillaSession&mount=Servlet&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=GodzillaSession&mount=Servlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -601,6 +662,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -614,7 +679,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=GodzillaSession&mount=AgentFilterChain&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=GodzillaSession&mount=AgentFilterChain&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -637,6 +702,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -650,7 +719,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=GodzillaSession&mount=AgentContextValve&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=GodzillaSession&mount=AgentContextValve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -673,6 +742,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -692,7 +765,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Behinder&mount=Listener&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Behinder&mount=Listener&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -715,6 +788,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -728,7 +805,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Behinder&mount=Filter&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Behinder&mount=Filter&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -751,6 +828,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -764,7 +845,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Behinder&mount=Valve&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Behinder&mount=Valve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -787,6 +868,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -800,7 +885,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Behinder&mount=ProxyValve&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Behinder&mount=ProxyValve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -823,6 +908,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -836,7 +925,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Behinder&mount=Servlet&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Behinder&mount=Servlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -859,6 +948,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -872,7 +965,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Behinder&mount=AgentFilterChain&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Behinder&mount=AgentFilterChain&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -895,6 +988,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -908,7 +1005,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Behinder&mount=AgentContextValve&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Behinder&mount=AgentContextValve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -931,6 +1028,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -950,7 +1051,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=Listener&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=Listener&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -973,6 +1074,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -986,7 +1091,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=Filter&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=Filter&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -1009,6 +1114,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -1022,7 +1131,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=Valve&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=Valve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -1045,6 +1154,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -1058,7 +1171,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=ProxyValve&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=ProxyValve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -1081,6 +1194,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -1094,7 +1211,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=Servlet&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=Servlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -1117,6 +1234,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -1130,7 +1251,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=AgentFilterChain&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=AgentFilterChain&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -1153,6 +1274,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -1166,7 +1291,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=AgentContextValve&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=AgentContextValve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -1189,6 +1314,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -1202,7 +1331,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=WebSocket&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=WebSocket&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -1225,6 +1354,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -1238,7 +1371,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=RawWebSocket&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=RawWebSocket&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -1261,6 +1394,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -1274,7 +1411,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=Upgrade&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=Upgrade&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -1297,6 +1434,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -1316,7 +1457,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Suo5&mount=Listener&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Suo5&mount=Listener&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -1339,6 +1480,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -1352,7 +1497,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Suo5&mount=Filter&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Suo5&mount=Filter&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -1375,6 +1520,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -1388,7 +1537,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Suo5&mount=Valve&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Suo5&mount=Valve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -1411,6 +1560,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -1424,7 +1577,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Suo5&mount=ProxyValve&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Suo5&mount=ProxyValve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -1447,6 +1600,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -1460,7 +1617,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Suo5&mount=Servlet&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Suo5&mount=Servlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -1483,6 +1640,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -1496,7 +1657,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Suo5&mount=AgentFilterChain&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Suo5&mount=AgentFilterChain&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -1519,6 +1680,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -1532,7 +1697,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Suo5&mount=AgentContextValve&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Suo5&mount=AgentContextValve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -1555,6 +1720,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -1574,7 +1743,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=AntSword&mount=Listener&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=AntSword&mount=Listener&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -1597,6 +1766,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -1610,7 +1783,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=AntSword&mount=Filter&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=AntSword&mount=Filter&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -1633,6 +1806,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -1646,7 +1823,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=AntSword&mount=Valve&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=AntSword&mount=Valve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -1669,6 +1846,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -1682,7 +1863,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=AntSword&mount=ProxyValve&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=AntSword&mount=ProxyValve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -1705,6 +1886,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -1718,7 +1903,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=AntSword&mount=Servlet&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=AntSword&mount=Servlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -1741,6 +1926,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -1754,7 +1943,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=AntSword&mount=AgentFilterChain&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=AntSword&mount=AgentFilterChain&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -1777,6 +1966,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -1790,7 +1983,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=AntSword&mount=AgentContextValve&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=AntSword&mount=AgentContextValve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -1813,6 +2006,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -1832,7 +2029,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=NeoreGeorg&mount=Listener&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=NeoreGeorg&mount=Listener&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -1855,6 +2052,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -1868,7 +2069,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=NeoreGeorg&mount=Filter&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=NeoreGeorg&mount=Filter&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -1891,6 +2092,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -1904,7 +2109,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=NeoreGeorg&mount=Valve&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=NeoreGeorg&mount=Valve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -1927,6 +2132,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -1940,7 +2149,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=NeoreGeorg&mount=ProxyValve&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=NeoreGeorg&mount=ProxyValve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -1963,6 +2172,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -1976,7 +2189,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=NeoreGeorg&mount=Servlet&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=NeoreGeorg&mount=Servlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -1999,6 +2212,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -2012,7 +2229,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=NeoreGeorg&mount=AgentFilterChain&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=NeoreGeorg&mount=AgentFilterChain&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -2035,6 +2252,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -2048,7 +2269,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=NeoreGeorg&mount=AgentContextValve&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=NeoreGeorg&mount=AgentContextValve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -2071,6 +2292,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -2090,7 +2315,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Proxy&mount=Listener&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Proxy&mount=Listener&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -2113,6 +2338,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -2126,7 +2355,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Proxy&mount=Filter&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Proxy&mount=Filter&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -2149,6 +2378,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -2162,7 +2395,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Proxy&mount=Valve&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Proxy&mount=Valve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -2185,6 +2418,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -2198,7 +2435,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Proxy&mount=ProxyValve&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Proxy&mount=ProxyValve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -2221,6 +2458,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -2234,7 +2475,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Proxy&mount=Servlet&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Proxy&mount=Servlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -2257,6 +2498,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -2270,7 +2515,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Proxy&mount=AgentFilterChain&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Proxy&mount=AgentFilterChain&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -2293,6 +2538,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -2306,7 +2555,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Proxy&mount=AgentContextValve&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Proxy&mount=AgentContextValve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -2329,6 +2578,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -2342,7 +2595,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Proxy&mount=WebSocket&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Proxy&mount=WebSocket&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -2365,6 +2618,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -2378,7 +2635,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Proxy&mount=RawWebSocket&mode=generate",
+                  "raw": "{{tomcatJavaxBaseUrl}}/entrypoint?server=Tomcat&tool=Proxy&mount=RawWebSocket&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJavaxBaseUrl}}"
                   ],
@@ -2401,6 +2658,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -2426,7 +2687,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=Listener&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=Listener&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -2449,6 +2710,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -2462,7 +2727,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=Filter&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=Filter&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -2485,6 +2750,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -2498,7 +2767,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=Valve&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=Valve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -2521,6 +2790,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -2534,7 +2807,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=ProxyValve&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=ProxyValve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -2557,6 +2830,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -2570,7 +2847,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=Servlet&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=Servlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -2593,6 +2870,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -2606,7 +2887,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=AgentFilterChain&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=AgentFilterChain&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -2629,6 +2910,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -2642,7 +2927,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=AgentContextValve&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=AgentContextValve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -2665,6 +2950,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -2678,7 +2967,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=WebSocket&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=WebSocket&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -2701,6 +2990,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -2714,7 +3007,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=RawWebSocket&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=RawWebSocket&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -2737,6 +3030,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -2750,7 +3047,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=Upgrade&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Godzilla&mount=Upgrade&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -2773,6 +3070,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -2792,7 +3093,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=GodzillaSession&mount=Listener&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=GodzillaSession&mount=Listener&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -2815,6 +3116,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -2828,7 +3133,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=GodzillaSession&mount=Filter&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=GodzillaSession&mount=Filter&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -2851,6 +3156,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -2864,7 +3173,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=GodzillaSession&mount=Valve&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=GodzillaSession&mount=Valve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -2887,6 +3196,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -2900,7 +3213,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=GodzillaSession&mount=ProxyValve&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=GodzillaSession&mount=ProxyValve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -2923,6 +3236,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -2936,7 +3253,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=GodzillaSession&mount=Servlet&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=GodzillaSession&mount=Servlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -2959,6 +3276,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -2972,7 +3293,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=GodzillaSession&mount=AgentFilterChain&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=GodzillaSession&mount=AgentFilterChain&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -2995,6 +3316,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -3008,7 +3333,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=GodzillaSession&mount=AgentContextValve&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=GodzillaSession&mount=AgentContextValve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -3031,6 +3356,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -3050,7 +3379,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Behinder&mount=Listener&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Behinder&mount=Listener&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -3073,6 +3402,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -3086,7 +3419,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Behinder&mount=Filter&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Behinder&mount=Filter&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -3109,6 +3442,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -3122,7 +3459,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Behinder&mount=Valve&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Behinder&mount=Valve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -3145,6 +3482,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -3158,7 +3499,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Behinder&mount=ProxyValve&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Behinder&mount=ProxyValve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -3181,6 +3522,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -3194,7 +3539,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Behinder&mount=Servlet&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Behinder&mount=Servlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -3217,6 +3562,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -3230,7 +3579,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Behinder&mount=AgentFilterChain&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Behinder&mount=AgentFilterChain&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -3253,6 +3602,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -3266,7 +3619,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Behinder&mount=AgentContextValve&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Behinder&mount=AgentContextValve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -3289,6 +3642,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -3308,7 +3665,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=Listener&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=Listener&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -3331,6 +3688,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -3344,7 +3705,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=Filter&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=Filter&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -3367,6 +3728,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -3380,7 +3745,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=Valve&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=Valve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -3403,6 +3768,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -3416,7 +3785,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=ProxyValve&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=ProxyValve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -3439,6 +3808,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -3452,7 +3825,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=Servlet&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=Servlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -3475,6 +3848,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -3488,7 +3865,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=AgentFilterChain&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=AgentFilterChain&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -3511,6 +3888,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -3524,7 +3905,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=AgentContextValve&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=AgentContextValve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -3547,6 +3928,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -3560,7 +3945,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=WebSocket&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=WebSocket&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -3583,6 +3968,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -3596,7 +3985,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=RawWebSocket&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=RawWebSocket&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -3619,6 +4008,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -3632,7 +4025,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=Upgrade&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Command&mount=Upgrade&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -3655,6 +4048,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -3674,7 +4071,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Suo5&mount=Listener&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Suo5&mount=Listener&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -3697,6 +4094,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -3710,7 +4111,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Suo5&mount=Filter&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Suo5&mount=Filter&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -3733,6 +4134,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -3746,7 +4151,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Suo5&mount=Valve&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Suo5&mount=Valve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -3769,6 +4174,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -3782,7 +4191,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Suo5&mount=ProxyValve&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Suo5&mount=ProxyValve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -3805,6 +4214,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -3818,7 +4231,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Suo5&mount=Servlet&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Suo5&mount=Servlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -3841,6 +4254,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -3854,7 +4271,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Suo5&mount=AgentFilterChain&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Suo5&mount=AgentFilterChain&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -3877,6 +4294,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -3890,7 +4311,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Suo5&mount=AgentContextValve&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Suo5&mount=AgentContextValve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -3913,6 +4334,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -3932,7 +4357,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=AntSword&mount=Listener&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=AntSword&mount=Listener&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -3955,6 +4380,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -3968,7 +4397,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=AntSword&mount=Filter&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=AntSword&mount=Filter&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -3991,6 +4420,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -4004,7 +4437,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=AntSword&mount=Valve&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=AntSword&mount=Valve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -4027,6 +4460,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -4040,7 +4477,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=AntSword&mount=ProxyValve&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=AntSword&mount=ProxyValve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -4063,6 +4500,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -4076,7 +4517,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=AntSword&mount=Servlet&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=AntSword&mount=Servlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -4099,6 +4540,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -4112,7 +4557,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=AntSword&mount=AgentFilterChain&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=AntSword&mount=AgentFilterChain&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -4135,6 +4580,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -4148,7 +4597,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=AntSword&mount=AgentContextValve&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=AntSword&mount=AgentContextValve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -4171,6 +4620,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -4190,7 +4643,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=NeoreGeorg&mount=Listener&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=NeoreGeorg&mount=Listener&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -4213,6 +4666,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -4226,7 +4683,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=NeoreGeorg&mount=Filter&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=NeoreGeorg&mount=Filter&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -4249,6 +4706,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -4262,7 +4723,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=NeoreGeorg&mount=Valve&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=NeoreGeorg&mount=Valve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -4285,6 +4746,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -4298,7 +4763,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=NeoreGeorg&mount=ProxyValve&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=NeoreGeorg&mount=ProxyValve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -4321,6 +4786,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -4334,7 +4803,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=NeoreGeorg&mount=Servlet&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=NeoreGeorg&mount=Servlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -4357,6 +4826,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -4370,7 +4843,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=NeoreGeorg&mount=AgentFilterChain&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=NeoreGeorg&mount=AgentFilterChain&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -4393,6 +4866,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -4406,7 +4883,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=NeoreGeorg&mount=AgentContextValve&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=NeoreGeorg&mount=AgentContextValve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -4429,6 +4906,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -4448,7 +4929,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Proxy&mount=Listener&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Proxy&mount=Listener&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -4471,6 +4952,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -4484,7 +4969,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Proxy&mount=Filter&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Proxy&mount=Filter&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -4507,6 +4992,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -4520,7 +5009,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Proxy&mount=Valve&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Proxy&mount=Valve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -4543,6 +5032,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -4556,7 +5049,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Proxy&mount=ProxyValve&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Proxy&mount=ProxyValve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -4579,6 +5072,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -4592,7 +5089,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Proxy&mount=Servlet&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Proxy&mount=Servlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -4615,6 +5112,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -4628,7 +5129,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Proxy&mount=AgentFilterChain&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Proxy&mount=AgentFilterChain&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -4651,6 +5152,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -4664,7 +5169,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Proxy&mount=AgentContextValve&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Proxy&mount=AgentContextValve&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -4687,6 +5192,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -4700,7 +5209,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Proxy&mount=WebSocket&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Proxy&mount=WebSocket&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -4723,6 +5232,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -4736,7 +5249,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Proxy&mount=RawWebSocket&mode=generate",
+                  "raw": "{{tomcatJakartaBaseUrl}}/entrypoint?server=Tomcat&tool=Proxy&mount=RawWebSocket&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{tomcatJakartaBaseUrl}}"
                   ],
@@ -4759,6 +5272,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -4784,7 +5301,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Godzilla&mount=Listener&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Godzilla&mount=Listener&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -4807,6 +5324,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -4820,7 +5341,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Godzilla&mount=Filter&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Godzilla&mount=Filter&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -4843,6 +5364,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -4856,7 +5381,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Godzilla&mount=Servlet&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Godzilla&mount=Servlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -4879,6 +5404,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -4892,7 +5421,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Godzilla&mount=Handler&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Godzilla&mount=Handler&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -4915,6 +5444,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -4928,7 +5461,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Godzilla&mount=Customizer&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Godzilla&mount=Customizer&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -4951,6 +5484,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -4964,7 +5501,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Godzilla&mount=AgentHandler&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Godzilla&mount=AgentHandler&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -4987,6 +5524,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -5000,7 +5541,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Godzilla&mount=WebSocket&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Godzilla&mount=WebSocket&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -5023,6 +5564,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -5036,7 +5581,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Godzilla&mount=RawWebSocket&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Godzilla&mount=RawWebSocket&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -5059,6 +5604,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -5078,7 +5627,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=GodzillaSession&mount=Listener&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=GodzillaSession&mount=Listener&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -5101,6 +5650,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -5114,7 +5667,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=GodzillaSession&mount=Filter&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=GodzillaSession&mount=Filter&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -5137,6 +5690,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -5150,7 +5707,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=GodzillaSession&mount=Servlet&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=GodzillaSession&mount=Servlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -5173,6 +5730,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -5192,7 +5753,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Behinder&mount=Listener&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Behinder&mount=Listener&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -5215,6 +5776,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -5228,7 +5793,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Behinder&mount=Filter&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Behinder&mount=Filter&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -5251,6 +5816,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -5264,7 +5833,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Behinder&mount=Servlet&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Behinder&mount=Servlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -5287,6 +5856,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -5300,7 +5873,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Behinder&mount=AgentHandler&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Behinder&mount=AgentHandler&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -5323,6 +5896,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -5342,7 +5919,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Command&mount=Listener&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Command&mount=Listener&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -5365,6 +5942,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -5378,7 +5959,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Command&mount=Filter&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Command&mount=Filter&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -5401,6 +5982,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -5414,7 +5999,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Command&mount=Servlet&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Command&mount=Servlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -5437,6 +6022,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -5450,7 +6039,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Command&mount=Handler&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Command&mount=Handler&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -5473,6 +6062,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -5486,7 +6079,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Command&mount=Customizer&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Command&mount=Customizer&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -5509,6 +6102,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -5522,7 +6119,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Command&mount=AgentHandler&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Command&mount=AgentHandler&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -5545,6 +6142,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -5558,7 +6159,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Command&mount=WebSocket&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Command&mount=WebSocket&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -5581,6 +6182,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -5594,7 +6199,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Command&mount=RawWebSocket&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Command&mount=RawWebSocket&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -5617,6 +6222,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -5636,7 +6245,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Suo5&mount=Listener&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Suo5&mount=Listener&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -5659,6 +6268,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -5672,7 +6285,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Suo5&mount=Filter&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Suo5&mount=Filter&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -5695,6 +6308,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -5708,7 +6325,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Suo5&mount=Servlet&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Suo5&mount=Servlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -5731,6 +6348,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -5744,7 +6365,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Suo5&mount=Customizer&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Suo5&mount=Customizer&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -5767,6 +6388,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -5780,7 +6405,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Suo5&mount=AgentHandler&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Suo5&mount=AgentHandler&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -5803,6 +6428,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -5822,7 +6451,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=AntSword&mount=Listener&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=AntSword&mount=Listener&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -5845,6 +6474,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -5858,7 +6491,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=AntSword&mount=Filter&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=AntSword&mount=Filter&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -5881,6 +6514,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -5894,7 +6531,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=AntSword&mount=Servlet&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=AntSword&mount=Servlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -5917,6 +6554,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -5930,7 +6571,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=AntSword&mount=AgentHandler&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=AntSword&mount=AgentHandler&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -5953,6 +6594,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -5972,7 +6617,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=NeoreGeorg&mount=Listener&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=NeoreGeorg&mount=Listener&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -5995,6 +6640,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -6008,7 +6657,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=NeoreGeorg&mount=Filter&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=NeoreGeorg&mount=Filter&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -6031,6 +6680,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -6044,7 +6697,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=NeoreGeorg&mount=Servlet&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=NeoreGeorg&mount=Servlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -6067,6 +6720,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -6080,7 +6737,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=NeoreGeorg&mount=AgentHandler&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=NeoreGeorg&mount=AgentHandler&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -6103,6 +6760,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -6122,7 +6783,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Proxy&mount=Listener&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Proxy&mount=Listener&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -6145,6 +6806,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -6158,7 +6823,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Proxy&mount=Filter&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Proxy&mount=Filter&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -6181,6 +6846,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -6194,7 +6863,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Proxy&mount=Servlet&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Proxy&mount=Servlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -6217,6 +6886,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -6230,7 +6903,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Proxy&mount=Handler&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Proxy&mount=Handler&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -6253,6 +6926,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -6266,7 +6943,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Proxy&mount=Customizer&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Proxy&mount=Customizer&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -6289,6 +6966,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -6302,7 +6983,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Proxy&mount=AgentHandler&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Proxy&mount=AgentHandler&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -6325,6 +7006,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -6338,7 +7023,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Proxy&mount=WebSocket&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Proxy&mount=WebSocket&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -6361,6 +7046,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -6374,7 +7063,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Proxy&mount=RawWebSocket&mode=generate",
+                  "raw": "{{jettyJavaxBaseUrl}}/entrypoint?server=Jetty&tool=Proxy&mount=RawWebSocket&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{jettyJavaxBaseUrl}}"
                   ],
@@ -6397,6 +7086,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -6422,7 +7115,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Godzilla&mount=Interceptor&mode=generate",
+                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Godzilla&mount=Interceptor&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJavaxBaseUrl}}"
                   ],
@@ -6445,6 +7138,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -6458,7 +7155,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Godzilla&mount=ControllerHandler&mode=generate",
+                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Godzilla&mount=ControllerHandler&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJavaxBaseUrl}}"
                   ],
@@ -6481,6 +7178,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -6494,7 +7195,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Godzilla&mount=AgentFrameworkServlet&mode=generate",
+                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Godzilla&mount=AgentFrameworkServlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJavaxBaseUrl}}"
                   ],
@@ -6517,6 +7218,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -6536,7 +7241,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=GodzillaSession&mount=Interceptor&mode=generate",
+                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=GodzillaSession&mount=Interceptor&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJavaxBaseUrl}}"
                   ],
@@ -6559,6 +7264,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -6572,7 +7281,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=GodzillaSession&mount=ControllerHandler&mode=generate",
+                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=GodzillaSession&mount=ControllerHandler&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJavaxBaseUrl}}"
                   ],
@@ -6595,6 +7304,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -6608,7 +7321,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=GodzillaSession&mount=AgentFrameworkServlet&mode=generate",
+                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=GodzillaSession&mount=AgentFrameworkServlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJavaxBaseUrl}}"
                   ],
@@ -6631,6 +7344,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -6650,7 +7367,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Behinder&mount=Interceptor&mode=generate",
+                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Behinder&mount=Interceptor&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJavaxBaseUrl}}"
                   ],
@@ -6673,6 +7390,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -6686,7 +7407,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Behinder&mount=ControllerHandler&mode=generate",
+                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Behinder&mount=ControllerHandler&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJavaxBaseUrl}}"
                   ],
@@ -6709,6 +7430,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -6722,7 +7447,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Behinder&mount=AgentFrameworkServlet&mode=generate",
+                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Behinder&mount=AgentFrameworkServlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJavaxBaseUrl}}"
                   ],
@@ -6745,6 +7470,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -6764,7 +7493,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Command&mount=Interceptor&mode=generate",
+                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Command&mount=Interceptor&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJavaxBaseUrl}}"
                   ],
@@ -6787,6 +7516,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -6800,7 +7533,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Command&mount=ControllerHandler&mode=generate",
+                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Command&mount=ControllerHandler&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJavaxBaseUrl}}"
                   ],
@@ -6823,6 +7556,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -6836,7 +7573,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Command&mount=AgentFrameworkServlet&mode=generate",
+                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Command&mount=AgentFrameworkServlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJavaxBaseUrl}}"
                   ],
@@ -6859,6 +7596,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -6878,7 +7619,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Suo5&mount=Interceptor&mode=generate",
+                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Suo5&mount=Interceptor&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJavaxBaseUrl}}"
                   ],
@@ -6901,6 +7642,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -6914,7 +7659,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Suo5&mount=ControllerHandler&mode=generate",
+                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Suo5&mount=ControllerHandler&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJavaxBaseUrl}}"
                   ],
@@ -6937,6 +7682,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -6950,7 +7699,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Suo5&mount=AgentFrameworkServlet&mode=generate",
+                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Suo5&mount=AgentFrameworkServlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJavaxBaseUrl}}"
                   ],
@@ -6973,6 +7722,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -6992,7 +7745,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=AntSword&mount=Interceptor&mode=generate",
+                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=AntSword&mount=Interceptor&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJavaxBaseUrl}}"
                   ],
@@ -7015,6 +7768,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -7028,7 +7785,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=AntSword&mount=ControllerHandler&mode=generate",
+                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=AntSword&mount=ControllerHandler&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJavaxBaseUrl}}"
                   ],
@@ -7051,6 +7808,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -7064,7 +7825,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=AntSword&mount=AgentFrameworkServlet&mode=generate",
+                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=AntSword&mount=AgentFrameworkServlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJavaxBaseUrl}}"
                   ],
@@ -7087,6 +7848,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -7106,7 +7871,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=NeoreGeorg&mount=Interceptor&mode=generate",
+                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=NeoreGeorg&mount=Interceptor&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJavaxBaseUrl}}"
                   ],
@@ -7129,6 +7894,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -7142,7 +7911,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=NeoreGeorg&mount=ControllerHandler&mode=generate",
+                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=NeoreGeorg&mount=ControllerHandler&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJavaxBaseUrl}}"
                   ],
@@ -7165,6 +7934,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -7178,7 +7951,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=NeoreGeorg&mount=AgentFrameworkServlet&mode=generate",
+                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=NeoreGeorg&mount=AgentFrameworkServlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJavaxBaseUrl}}"
                   ],
@@ -7201,6 +7974,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -7220,7 +7997,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Proxy&mount=Interceptor&mode=generate",
+                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Proxy&mount=Interceptor&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJavaxBaseUrl}}"
                   ],
@@ -7243,6 +8020,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -7256,7 +8037,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Proxy&mount=ControllerHandler&mode=generate",
+                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Proxy&mount=ControllerHandler&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJavaxBaseUrl}}"
                   ],
@@ -7279,6 +8060,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -7292,7 +8077,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Proxy&mount=AgentFrameworkServlet&mode=generate",
+                  "raw": "{{springMvcJavaxBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Proxy&mount=AgentFrameworkServlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJavaxBaseUrl}}"
                   ],
@@ -7315,6 +8100,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -7340,7 +8129,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Godzilla&mount=Interceptor&mode=generate",
+                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Godzilla&mount=Interceptor&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJakartaBaseUrl}}"
                   ],
@@ -7363,6 +8152,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -7376,7 +8169,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Godzilla&mount=ControllerHandler&mode=generate",
+                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Godzilla&mount=ControllerHandler&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJakartaBaseUrl}}"
                   ],
@@ -7399,6 +8192,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -7412,7 +8209,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Godzilla&mount=AgentFrameworkServlet&mode=generate",
+                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Godzilla&mount=AgentFrameworkServlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJakartaBaseUrl}}"
                   ],
@@ -7435,6 +8232,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -7454,7 +8255,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=GodzillaSession&mount=Interceptor&mode=generate",
+                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=GodzillaSession&mount=Interceptor&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJakartaBaseUrl}}"
                   ],
@@ -7477,6 +8278,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -7490,7 +8295,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=GodzillaSession&mount=ControllerHandler&mode=generate",
+                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=GodzillaSession&mount=ControllerHandler&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJakartaBaseUrl}}"
                   ],
@@ -7513,6 +8318,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -7526,7 +8335,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=GodzillaSession&mount=AgentFrameworkServlet&mode=generate",
+                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=GodzillaSession&mount=AgentFrameworkServlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJakartaBaseUrl}}"
                   ],
@@ -7549,6 +8358,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -7568,7 +8381,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Behinder&mount=Interceptor&mode=generate",
+                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Behinder&mount=Interceptor&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJakartaBaseUrl}}"
                   ],
@@ -7591,6 +8404,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -7604,7 +8421,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Behinder&mount=ControllerHandler&mode=generate",
+                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Behinder&mount=ControllerHandler&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJakartaBaseUrl}}"
                   ],
@@ -7627,6 +8444,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -7640,7 +8461,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Behinder&mount=AgentFrameworkServlet&mode=generate",
+                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Behinder&mount=AgentFrameworkServlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJakartaBaseUrl}}"
                   ],
@@ -7663,6 +8484,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -7682,7 +8507,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Command&mount=Interceptor&mode=generate",
+                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Command&mount=Interceptor&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJakartaBaseUrl}}"
                   ],
@@ -7705,6 +8530,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -7718,7 +8547,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Command&mount=ControllerHandler&mode=generate",
+                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Command&mount=ControllerHandler&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJakartaBaseUrl}}"
                   ],
@@ -7741,6 +8570,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -7754,7 +8587,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Command&mount=AgentFrameworkServlet&mode=generate",
+                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Command&mount=AgentFrameworkServlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJakartaBaseUrl}}"
                   ],
@@ -7777,6 +8610,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -7796,7 +8633,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Suo5&mount=Interceptor&mode=generate",
+                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Suo5&mount=Interceptor&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJakartaBaseUrl}}"
                   ],
@@ -7819,6 +8656,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -7832,7 +8673,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Suo5&mount=ControllerHandler&mode=generate",
+                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Suo5&mount=ControllerHandler&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJakartaBaseUrl}}"
                   ],
@@ -7855,6 +8696,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -7868,7 +8713,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Suo5&mount=AgentFrameworkServlet&mode=generate",
+                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Suo5&mount=AgentFrameworkServlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJakartaBaseUrl}}"
                   ],
@@ -7891,6 +8736,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -7910,7 +8759,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=AntSword&mount=Interceptor&mode=generate",
+                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=AntSword&mount=Interceptor&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJakartaBaseUrl}}"
                   ],
@@ -7933,6 +8782,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -7946,7 +8799,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=AntSword&mount=ControllerHandler&mode=generate",
+                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=AntSword&mount=ControllerHandler&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJakartaBaseUrl}}"
                   ],
@@ -7969,6 +8822,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -7982,7 +8839,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=AntSword&mount=AgentFrameworkServlet&mode=generate",
+                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=AntSword&mount=AgentFrameworkServlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJakartaBaseUrl}}"
                   ],
@@ -8005,6 +8862,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -8024,7 +8885,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=NeoreGeorg&mount=Interceptor&mode=generate",
+                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=NeoreGeorg&mount=Interceptor&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJakartaBaseUrl}}"
                   ],
@@ -8047,6 +8908,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -8060,7 +8925,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=NeoreGeorg&mount=ControllerHandler&mode=generate",
+                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=NeoreGeorg&mount=ControllerHandler&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJakartaBaseUrl}}"
                   ],
@@ -8083,6 +8948,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -8096,7 +8965,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=NeoreGeorg&mount=AgentFrameworkServlet&mode=generate",
+                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=NeoreGeorg&mount=AgentFrameworkServlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJakartaBaseUrl}}"
                   ],
@@ -8119,6 +8988,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -8138,7 +9011,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Proxy&mount=Interceptor&mode=generate",
+                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Proxy&mount=Interceptor&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJakartaBaseUrl}}"
                   ],
@@ -8161,6 +9034,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -8174,7 +9051,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Proxy&mount=ControllerHandler&mode=generate",
+                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Proxy&mount=ControllerHandler&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJakartaBaseUrl}}"
                   ],
@@ -8197,6 +9074,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -8210,7 +9091,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Proxy&mount=AgentFrameworkServlet&mode=generate",
+                  "raw": "{{springMvcJakartaBaseUrl}}/entrypoint?server=SpringWebMvc&tool=Proxy&mount=AgentFrameworkServlet&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{springMvcJakartaBaseUrl}}"
                   ],
@@ -8233,6 +9114,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -8258,7 +9143,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{webfluxBaseUrl}}/entrypoint?server=SpringWebFlux&tool=Godzilla&mount=WebFilter&mode=generate",
+                  "raw": "{{webfluxBaseUrl}}/entrypoint?server=SpringWebFlux&tool=Godzilla&mount=WebFilter&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{webfluxBaseUrl}}"
                   ],
@@ -8281,6 +9166,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -8294,7 +9183,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{webfluxBaseUrl}}/entrypoint?server=SpringWebFlux&tool=Godzilla&mount=NettyHandler&mode=generate",
+                  "raw": "{{webfluxBaseUrl}}/entrypoint?server=SpringWebFlux&tool=Godzilla&mount=NettyHandler&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{webfluxBaseUrl}}"
                   ],
@@ -8317,6 +9206,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -8330,7 +9223,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{webfluxBaseUrl}}/entrypoint?server=SpringWebFlux&tool=Godzilla&mount=HandlerMethod&mode=generate",
+                  "raw": "{{webfluxBaseUrl}}/entrypoint?server=SpringWebFlux&tool=Godzilla&mount=HandlerMethod&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{webfluxBaseUrl}}"
                   ],
@@ -8353,6 +9246,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -8366,7 +9263,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{webfluxBaseUrl}}/entrypoint?server=SpringWebFlux&tool=Godzilla&mount=HandlerFunction&mode=generate",
+                  "raw": "{{webfluxBaseUrl}}/entrypoint?server=SpringWebFlux&tool=Godzilla&mount=HandlerFunction&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{webfluxBaseUrl}}"
                   ],
@@ -8389,6 +9286,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -8408,7 +9309,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{webfluxBaseUrl}}/entrypoint?server=SpringWebFlux&tool=Command&mount=WebFilter&mode=generate",
+                  "raw": "{{webfluxBaseUrl}}/entrypoint?server=SpringWebFlux&tool=Command&mount=WebFilter&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{webfluxBaseUrl}}"
                   ],
@@ -8431,6 +9332,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -8444,7 +9349,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{webfluxBaseUrl}}/entrypoint?server=SpringWebFlux&tool=Command&mount=NettyHandler&mode=generate",
+                  "raw": "{{webfluxBaseUrl}}/entrypoint?server=SpringWebFlux&tool=Command&mount=NettyHandler&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{webfluxBaseUrl}}"
                   ],
@@ -8467,6 +9372,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -8480,7 +9389,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{webfluxBaseUrl}}/entrypoint?server=SpringWebFlux&tool=Command&mount=HandlerMethod&mode=generate",
+                  "raw": "{{webfluxBaseUrl}}/entrypoint?server=SpringWebFlux&tool=Command&mount=HandlerMethod&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{webfluxBaseUrl}}"
                   ],
@@ -8503,6 +9412,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -8516,7 +9429,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{webfluxBaseUrl}}/entrypoint?server=SpringWebFlux&tool=Command&mount=HandlerFunction&mode=generate",
+                  "raw": "{{webfluxBaseUrl}}/entrypoint?server=SpringWebFlux&tool=Command&mount=HandlerFunction&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{webfluxBaseUrl}}"
                   ],
@@ -8539,6 +9452,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -8558,7 +9475,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{webfluxBaseUrl}}/entrypoint?server=SpringWebFlux&tool=Suo5&mount=WebFilter&mode=generate",
+                  "raw": "{{webfluxBaseUrl}}/entrypoint?server=SpringWebFlux&tool=Suo5&mount=WebFilter&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{webfluxBaseUrl}}"
                   ],
@@ -8581,6 +9498,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -8600,7 +9521,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{webfluxBaseUrl}}/entrypoint?server=SpringWebFlux&tool=Proxy&mount=WebFilter&mode=generate",
+                  "raw": "{{webfluxBaseUrl}}/entrypoint?server=SpringWebFlux&tool=Proxy&mount=WebFilter&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{webfluxBaseUrl}}"
                   ],
@@ -8623,6 +9544,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -8636,7 +9561,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{webfluxBaseUrl}}/entrypoint?server=SpringWebFlux&tool=Proxy&mount=NettyHandler&mode=generate",
+                  "raw": "{{webfluxBaseUrl}}/entrypoint?server=SpringWebFlux&tool=Proxy&mount=NettyHandler&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{webfluxBaseUrl}}"
                   ],
@@ -8659,6 +9584,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -8672,7 +9601,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{webfluxBaseUrl}}/entrypoint?server=SpringWebFlux&tool=Proxy&mount=HandlerMethod&mode=generate",
+                  "raw": "{{webfluxBaseUrl}}/entrypoint?server=SpringWebFlux&tool=Proxy&mount=HandlerMethod&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{webfluxBaseUrl}}"
                   ],
@@ -8695,6 +9624,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },
@@ -8708,7 +9641,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{webfluxBaseUrl}}/entrypoint?server=SpringWebFlux&tool=Proxy&mount=HandlerFunction&mode=generate",
+                  "raw": "{{webfluxBaseUrl}}/entrypoint?server=SpringWebFlux&tool=Proxy&mount=HandlerFunction&mode=generate&obfuscate={{obfuscate}}",
                   "host": [
                     "{{webfluxBaseUrl}}"
                   ],
@@ -8731,6 +9664,10 @@
                     {
                       "key": "mode",
                       "value": "generate"
+                    },
+                    {
+                      "key": "obfuscate",
+                      "value": "{{obfuscate}}"
                     }
                   ]
                 },

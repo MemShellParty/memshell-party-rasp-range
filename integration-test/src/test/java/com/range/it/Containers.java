@@ -38,7 +38,18 @@ public final class Containers {
         return "http://" + container.getHost() + ":" + container.getMappedPort(8080);
     }
 
-    public static String tomcatBaseUrl(GenericContainer<?> container) {
+    public static GenericContainer<?> jetty(String image, String warName) {
+        return new GenericContainer<>(DockerImageName.parse(image))
+                .withCopyFileToContainer(MountableFile.forHostPath(RangeAssertions.artifact(warName).toPath()),
+                        "/var/lib/jetty/webapps/range.war")
+                .withExposedPorts(8080)
+                .waitingFor(Wait.forHttp("/range/api/runtime")
+                        .forPort(8080)
+                        .forStatusCode(200)
+                        .withStartupTimeout(Duration.ofMinutes(4)));
+    }
+
+    public static String servletBaseUrl(GenericContainer<?> container) {
         return baseUrl(container) + "/range";
     }
 }

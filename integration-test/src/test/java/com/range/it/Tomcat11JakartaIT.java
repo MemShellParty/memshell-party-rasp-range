@@ -8,7 +8,7 @@ class Tomcat11JakartaIT {
     void injectsEveryTomcatJakartaType() {
         try (GenericContainer<?> tomcat = Containers.tomcat("tomcat:11.0.27-jdk17-temurin-jammy", "range-war-jakarta.war")) {
             tomcat.start();
-            RangeAssertions.verifyAll(Containers.tomcatBaseUrl(tomcat), "Tomcat");
+            RangeAssertions.verifyAll(Containers.servletBaseUrl(tomcat), "Tomcat");
         }
     }
 }

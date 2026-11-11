@@ -2,8 +2,8 @@
 # Start a built range image and inject every Godzilla/Behinder/Suo5 combination
 # the running middleware advertises. Requires only docker and curl on the host.
 #
-#   ./docker/verify-range.sh harbor.corp.boundaryx.net/cloudrasp/memshell-range-tomcat-javax:0.1.0
-#   TOOLS=Godzilla SUITE=javax-tomcat ./docker/verify-range.sh <image>
+#   ./docker/verify-range.sh ghcr.io/memshellparty/memshell-party-rasp-range/memshell-range-tomcat-javax:0.1.0
+#   TOOLS=Godzilla SUITE=tomcat-javax ./docker/verify-range.sh <image>
 #
 # Every combination is injected twice: once plain and once with obfuscate=true.
 # Set MODES=plain or MODES=obfuscated to run a single mode.

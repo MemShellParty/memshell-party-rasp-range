@@ -2,17 +2,15 @@
 # Build the range images and push them to a registry.
 #
 #   ./docker/build.sh                              # six public images to GHCR
-#   REGISTRY=harbor.example/cloudrasp ./docker/build.sh
+#   REGISTRY=registry.example.com/team ./docker/build.sh
 #   PUSH=false PLATFORMS=linux/amd64 ./docker/build.sh   # local amd64 images
 #   ONLY=tomcat-javax,webflux ./docker/build.sh
-#   INCLUDE_BES=1 ./docker/build.sh                # add the internal BES image
 #
-# The six public images use Docker Hub base images. BES uses the internal
-# Harbor base and stays out of the default list.
+# All six images use Docker Hub base images.
 set -euo pipefail
 
 root=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
-registry=${REGISTRY:-ghcr.io/MemShellParty/memshell-party-rasp-range}
+registry=${REGISTRY:-$(printf '%s' 'ghcr.io/MemShellParty/memshell-party-rasp-range' | tr '[:upper:]' '[:lower:]')}
 tag=${TAG:-0.1.0}
 platforms=${PLATFORMS:-linux/amd64,linux/arm64}
 push=${PUSH:-true}
@@ -32,9 +30,6 @@ images=(
   "springmvc-jakarta|Dockerfile.springmvc-jakarta|range-springmvc-jakarta/build/libs|range-springmvc-jakarta-*.jar"
   "webflux|Dockerfile.webflux|range-webflux/build/libs|range-webflux-*.jar"
 )
-if [[ "${INCLUDE_BES:-0}" == "1" ]]; then
-  images+=("bes-javax|Dockerfile.bes-javax|range-war-javax/build/libs|range-war-javax-*.war")
-fi
 
 for entry in "${images[@]}"; do
   IFS='|' read -r name file context artifact <<<"$entry"

@@ -18,10 +18,10 @@ dependencies {
     // classloader, which hides org.eclipse.jetty.* from Jetty's parent loader.
     // Bundling the Jetty API lets those templates resolve inside the WAR.
     runtimeOnly 'org.eclipse.jetty:jetty-server:9.4.19.v20190610'
-    // BES relocates org.apache.catalina.* to com.bes.enterprise.webtier.*, but
-    // the SDK Valve template still extends org.apache.catalina.Valve, so the
-    // generator needs that type inside the webapp loader. Tomcat delegates the
-    // package to its own catalina.jar, so the stub does not shadow it there.
+    // Some containers relocate org.apache.catalina.* into their own package,
+    // but the SDK Valve template still extends org.apache.catalina.Valve, so
+    // the generator needs that type inside the webapp loader. Tomcat delegates
+    // the package to its own catalina.jar, so the stub does not shadow it there.
     runtimeOnly "io.github.reajason:memshell-party-stub-tomcat:3.0.0"
 }
 

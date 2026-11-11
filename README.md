@@ -80,13 +80,14 @@ curl -X POST http://127.0.0.1:8080/entrypoint \
 ./gradlew :integration-test:test
 ```
 
-集成测试使用 Testcontainers，覆盖五个工件：Tomcat 9 javax、Tomcat 11 jakarta、Spring MVC javax、Spring MVC jakarta、Spring WebFlux。每个测试读取 `/api/catalog`，对矩阵里的每个工具与挂载组合调用 `/api/inject`，要求接口返回 200 且 `defined` 或 `attached` 为真。类成功定义即视为成功；实例化失败只作为 warning 记录，注入效果由 SDK 负责。
+集成测试使用 Testcontainers，覆盖六个工件：Tomcat 9 javax、Tomcat 11 jakarta、Jetty 9 javax、Spring MVC javax、Spring MVC jakarta、Spring WebFlux。每个测试读取 `/api/catalog`，对矩阵里的每个工具与挂载组合调用 `/api/inject`，要求接口返回 200 且 `defined` 或 `attached` 为真。类成功定义即视为成功；实例化失败只作为 warning 记录，注入效果由 SDK 负责。
 
 当前结果：
 
 ```text
 Tomcat 9 javax        64 组合通过
 Tomcat 11 jakarta     64 组合通过
+Jetty 9 javax         44 组合通过
 Spring MVC javax      24 组合通过
 Spring MVC jakarta    24 组合通过
 Spring WebFlux        13 组合通过
@@ -107,17 +108,11 @@ Agent 挂载会启动同一 JDK 下的 `java -jar` 附加进程，因此运行�
 | `memshell-range-tomcat-javax` | `tomcat:9.0.123-jdk8-temurin-jammy` | `range-war-javax.war` | `/range` |
 | `memshell-range-tomcat-jakarta` | `tomcat:11.0.27-jdk17-temurin-jammy` | `range-war-jakarta.war` | `/range` |
 | `memshell-range-jetty-javax` | `jetty:9.4.58-jdk8-eclipse-temurin` | `range-war-javax.war` | `/range` |
-| `memshell-range-springmvc-javax` | `eclipse-temurin:11-jdk` | `range-springmvc-javax.jar` | `/` |
-| `memshell-range-springmvc-jakarta` | `eclipse-temurin:17-jdk` | `range-springmvc-jakarta.jar` | `/` |
-| `memshell-range-webflux` | `eclipse-temurin:17-jdk` | `range-webflux.jar` | `/` |
+| `memshell-range-springmvc-javax` | `eclipse-temurin:11.0.33_10-jdk-jammy` | `range-springmvc-javax.jar` | `/` |
+| `memshell-range-springmvc-jakarta` | `eclipse-temurin:17.0.17_10-jdk-jammy` | `range-springmvc-jakarta.jar` | `/` |
+| `memshell-range-webflux` | `eclipse-temurin:17.0.17_10-jdk-jammy` | `range-webflux.jar` | `/` |
 
-GHCR 地址为 `ghcr.io/MemShellParty/memshell-party-rasp-range/memshell-range-<name>:<tag>`，`<tag>` 是 `0.1.0`、`latest` 或提交短 SHA。
-
-BES 9.5.5 依赖内部 Harbor 基础镜像，不在默认的六个之列。需要时单独构建：
-
-```bash
-INCLUDE_BES=1 ./docker/build.sh ONLY=bes-javax
-```
+GHCR 地址为 `ghcr.io/memshellparty/memshell-party-rasp-range/memshell-range-<name>:<tag>`，`<tag>` 是 `0.1.0`、`latest` 或提交短 SHA。
 
 构建并推送 `linux/amd64,linux/arm64` 两个架构：
 
@@ -140,7 +135,7 @@ PUSH=false PLATFORMS=linux/amd64 ./docker/build.sh
 - `artifacts`：用 JDK 17 构建五个工件。
 - `verify`：用 Testcontainers 跑集成测试。
 - `postman`：重新生成 Postman 集合，并检查提交的 JSON 与 catalog 快照一致。
-- `images`：按矩阵构建六个镜像。`main` 和标签推送时推送到 GHCR 的 `linux/amd64,linux/arm64`，PR 只构建 `linux/amd64` 不推送。
+- `images`：等 `artifacts` 和 `verify` 都通过后，按矩阵构建六个镜像。`main` 和标签推送时推送到 GHCR 的 `linux/amd64,linux/arm64`，PR 只构建 `linux/amd64` 不推送。
 
 仓库是私有的，所以 GHCR 包默认也是私有的。同一个仓库的 workflow 用 `GITHUB_TOKEN` 拉取：
 
@@ -149,7 +144,7 @@ permissions:
   packages: read
 steps:
   - run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-  - run: docker pull ghcr.io/MemShellParty/memshell-party-rasp-range/memshell-range-tomcat-javax:0.1.0
+  - run: docker pull ghcr.io/memshellparty/memshell-party-rasp-range/memshell-range-tomcat-javax:0.1.0
 ```
 
 其他仓库或本地拉取时，需要在包的设置里把仓库加入 Actions 访问，或者使用带 `read:packages` 的 PAT。要把镜像公开给匿名 CI，在包的设置里把 visibility 改成 public。
@@ -164,11 +159,11 @@ steps:
 | `memshell-range-generate.postman_collection.json` | 调用 `/entrypoint?mode=generate` 只生成 | 233 |
 | `memshell-range.postman_environment.json` | 六个镜像的基础地址 | 6 |
 
-集合按镜像分目录，目录内按工具分组，每个工具和挂载类型一个请求。请求参数是 `server`、`tool`、`mount`，生成集合额外带 `mode=generate`。集合级测试脚本断言注入返回 `defined` 或 `attached`，生成返回非空 `payloadBase64`。
+集合按镜像分目录，目录内按工具分组，每个工具和挂载类型一个请求。请求参数是 `server`、`tool`、`mount` 和 `obfuscate`，生成集合额外带 `mode=generate`。`obfuscate` 是集合变量，默认 `false`；改成 `true` 再跑一遍就是混淆路径。集合级测试脚本断言注入返回 `defined` 或 `attached`，生成返回非空 `payloadBase64`。
 
 使用：
 
-1. 启动一个镜像，例如 `docker run --rm -p 8080:8080 ghcr.io/MemShellParty/memshell-party-rasp-range/memshell-range-tomcat-javax:0.1.0`。
+1. 启动一个镜像，例如 `docker run --rm -p 8080:8080 ghcr.io/memshellparty/memshell-party-rasp-range/memshell-range-tomcat-javax:0.1.0`。
 2. 导入两个集合和环境，选择环境 `memshell-range`。
 3. 修改对应镜像的地址变量。Tomcat 和 Jetty 用 `http://127.0.0.1:8080/range`，Spring 镜像用 `http://127.0.0.1:8080`。
 4. 打开该镜像目录，运行需要的工具分组。Agent 挂载会启动附加进程，耗时更长。
@@ -200,6 +195,6 @@ SUITE=springmvc-javax ./docker/verify-range.sh range-local/memshell-range-spring
 | `memshell-range-springmvc-jakarta` | 3 | 3 | 3 | 18/18 |
 | `memshell-range-webflux` | 4 | 0 | 1 | 10/10 |
 
-BES 9.5.5 把 `org.apache.catalina.*` 迁移到了 `com.bes.enterprise.webtier.*`。SDK 的 Valve 生成器会把模板里的 `org.apache.catalina.*` 重定位到 BES 的包名，但生成阶段仍需解析模板的父类 `org.apache.catalina.Valve`，所以两个 WAR 模块（`range-war-javax`、`range-war-jakarta`）在 `WEB-INF/lib` 里放入 `memshell-party-stub-tomcat`。Tomcat 的 Webapp 类加载器把 `org.apache.catalina.*` 委派给容器自带的 `catalina.jar`，stub 不会遮蔽真实类；BES 的类加载器则从 stub 解析父类，Valve 因此可以生成并挂到 `com.bes.enterprise.webtier` 的 Pipeline 上。Spring Boot 的 fat jar 使用扁平类加载器，stub 会排在 `tomcat-embed-core` 前面并导致 `NoSuchMethodError`，因此 stub 只加在 WAR 模块，不进 `range-core` 的共享依赖。`memshell-party-stub-jetty` 仍然排除，因为靶场自带真实 Jetty 类。
+部分中间件会把 `org.apache.catalina.*` 重定位到自己的包名。SDK 的 Valve 生成器会把模板里的 `org.apache.catalina.*` 同步重定位，但生成阶段仍需解析模板的父类 `org.apache.catalina.Valve`，所以两个 WAR 模块（`range-war-javax`、`range-war-jakarta`）在 `WEB-INF/lib` 里放入 `memshell-party-stub-tomcat`。Tomcat 的 Webapp 类加载器把 `org.apache.catalina.*` 委派给容器自带的 `catalina.jar`，stub 不会遮蔽真实类；对重定位过的容器，生成器从 stub 解析父类后再按模板重定位到容器包名。Spring Boot 的 fat jar 使用扁平类加载器，stub 会排在 `tomcat-embed-core` 前面并导致 `NoSuchMethodError`，因此 stub 只加在 WAR 模块，不进 `range-core` 的共享依赖。`memshell-party-stub-jetty` 仍然排除，因为靶场自带真实 Jetty 类。
 
 Jetty 官方镜像不再提供 `9.4.19` 标签，公开基础镜像改用最后一个 9.4 版本 `9.4.58`。SDK 的 Handler 模板按代际选择，`/entrypoint` 会把容器版本（如 `9.4.58.v20250814`）归一化成 `7+` 后再生成，验证结果与 9.4.19 一致。

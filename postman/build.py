@@ -70,12 +70,12 @@ INJECT_INTRO = """按工具与挂载类型逐个调用 `/entrypoint`，服务端
 2. 在环境 `memshell-range` 里把对应变量改成本机地址。Tomcat 和 Jetty 带 `/range` 上下文，Spring 镜像不带。
 3. 运行一个镜像目录下的请求。每个请求带 `server`、`tool`、`mount` 三个参数。
 
-集合级测试断言 HTTP 200 且响应中的 `defined` 或 `attached` 为真。Agent 类挂载会启动附加进程，耗时明显长于类加载挂载。
+集合变量 `obfuscate` 默认 `false`。把它改成 `true` 再跑一遍，就是混淆路径。集合级测试断言 HTTP 200 且响应中的 `defined` 或 `attached` 为真。Agent 类挂载会启动附加进程，耗时明显长于类加载挂载。
 """
 
 GENERATE_INTRO = """按工具与挂载类型逐个调用 `/entrypoint?mode=generate`，只生成并返回 Base64，不加载。
 
-使用步骤与注入集合相同。集合级测试断言 HTTP 200 且 `payloadBase64` 非空。响应里的 `shellClassName` 和 `injectorClassName` 是本次采样到的类名，每次都可能不同。
+使用步骤与注入集合相同。集合变量 `obfuscate` 默认 `false`，改成 `true` 就是混淆路径。集合级测试断言 HTTP 200 且 `payloadBase64` 非空。响应里的 `shellClassName` 和 `injectorClassName` 是本次采样到的类名，每次都可能不同。
 """
 
 INJECT_TEST = [
@@ -117,7 +117,9 @@ def request_item(target, server, tool, mount, mode):
     ]
     if mode == "generate":
         query.append(("mode", "generate"))
-    raw = "{{" + target["variable"] + "}}/entrypoint?" + urllib.parse.urlencode(query)
+    raw = ("{{" + target["variable"] + "}}/entrypoint?"
+           + urllib.parse.urlencode(query) + "&obfuscate={{obfuscate}}")
+    query.append(("obfuscate", "{{obfuscate}}"))
     name = tool + " / " + mount
     if mode == "generate":
         description = "只生成 " + tool + " 的 " + mount + " 类型内存马，不加载。"
@@ -179,7 +181,7 @@ def build_collection(mode, catalogs):
         "variable": [
             {"key": t["variable"], "value": t["url"], "type": "string"}
             for t in TARGETS
-        ],
+        ] + [{"key": "obfuscate", "value": "false", "type": "string"}],
         "item": items,
     }
     return collection, total

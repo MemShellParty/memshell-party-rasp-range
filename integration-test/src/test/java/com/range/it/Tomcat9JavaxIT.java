@@ -8,7 +8,7 @@ class Tomcat9JavaxIT {
     void injectsEveryTomcatJavaxType() {
         try (GenericContainer<?> tomcat = Containers.tomcat("tomcat:9.0.123-jdk8-temurin-jammy", "range-war-javax.war")) {
             tomcat.start();
-            RangeAssertions.verifyAll(Containers.tomcatBaseUrl(tomcat), "Tomcat");
+            RangeAssertions.verifyAll(Containers.servletBaseUrl(tomcat), "Tomcat");
         }
     }
 }

@@ -9,7 +9,6 @@ on:
 
 permissions:
   contents: read
-  packages: write
 
 concurrency:
   group: images-${{ github.ref }}
@@ -32,6 +31,15 @@ jobs:
         run: |
           version=$(sed -n "s/^[[:space:]]*version = '\([^']*\)'.*/\1/p" build.gradle | head -1)
           echo "version=$version" >> "$GITHUB_OUTPUT"
+      - name: Require the release tag to match the build version
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          if [ "v$VERSION" != "$GITHUB_REF_NAME" ]; then
+            echo "tag $GITHUB_REF_NAME does not match build.gradle version $VERSION" >&2
+            exit 1
+          fi
       - uses: actions/upload-artifact@v4
         with:
           name: range-artifacts
@@ -44,6 +52,7 @@ jobs:
             range-webflux/build/libs/range-webflux-*.jar
 
   verify:
+    needs: artifacts
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
@@ -65,8 +74,11 @@ jobs:
         run: git diff --exit-code -- postman
 
   images:
-    needs: artifacts
+    needs: [artifacts, verify]
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     strategy:
       fail-fast: false
       matrix:

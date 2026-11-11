@@ -6,7 +6,7 @@ import org.testcontainers.containers.GenericContainer;
 class SpringMvcJakartaIT {
     @Test
     void injectsEverySpringMvcJakartaType() {
-        try (GenericContainer<?> spring = Containers.boot("eclipse-temurin:17-jdk", "range-springmvc-jakarta.jar")) {
+        try (GenericContainer<?> spring = Containers.boot("eclipse-temurin:17.0.17_10-jdk-jammy", "range-springmvc-jakarta.jar")) {
             spring.start();
             RangeAssertions.verifyAll(Containers.baseUrl(spring), "SpringWebMvc");
         }

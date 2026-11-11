@@ -2,7 +2,7 @@
 # Refresh postman/catalogs/ from running range images.
 #
 #   ./postman/collect-catalogs.sh
-#   REGISTRY=harbor.example/cloudrasp TAG=0.1.0 ./postman/collect-catalogs.sh
+#   REGISTRY=registry.example.com/team TAG=0.1.0 ./postman/collect-catalogs.sh
 #
 # Each image is started on a random loopback port, its /api/catalog is saved,
 # and the container is removed. Then run `python3 -I postman/build.py`.
@@ -10,7 +10,7 @@ set -euo pipefail
 
 root=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 out=${OUT:-$root/postman/catalogs}
-registry=${REGISTRY:-ghcr.io/MemShellParty/memshell-party-rasp-range}
+registry=${REGISTRY:-$(printf '%s' 'ghcr.io/MemShellParty/memshell-party-rasp-range' | tr '[:upper:]' '[:lower:]')}
 tag=${TAG:-0.1.0}
 mkdir -p "$out"
 

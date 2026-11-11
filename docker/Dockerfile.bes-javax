@@ -1,4 +1,0 @@
-# BES 9.5.5 (javax) with the range WAR hot-deployed at /range.
-FROM harbor.corp.boundaryx.net/cloudrasp/bes:9.5.5
-ARG ARTIFACT=range-war-javax-*.war
-COPY ${ARTIFACT} /opt/bes/hotdeploy/range.war
