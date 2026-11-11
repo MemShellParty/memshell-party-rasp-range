@@ -1,0 +1,245 @@
+{
+ "runtime": {
+  "server": "SpringWebMvc",
+  "serverVersion": "unknown",
+  "jakarta": true,
+  "javaVersion": "17.0.17",
+  "classVersion": 61,
+  "pid": "1",
+  "basePath": "",
+  "agentCapable": true,
+  "servers": [
+   "SpringWebMvc",
+   "Tomcat",
+   "Jetty",
+   "Undertow"
+  ]
+ },
+ "servers": [
+  "SpringWebMvc",
+  "Tomcat",
+  "Jetty",
+  "Undertow"
+ ],
+ "server": "SpringWebMvc",
+ "matrix": {
+  "Godzilla": [
+   "Interceptor",
+   "ControllerHandler",
+   "AgentFrameworkServlet"
+  ],
+  "GodzillaSession": [
+   "Interceptor",
+   "ControllerHandler",
+   "AgentFrameworkServlet"
+  ],
+  "Behinder": [
+   "Interceptor",
+   "ControllerHandler",
+   "AgentFrameworkServlet"
+  ],
+  "Command": [
+   "Interceptor",
+   "ControllerHandler",
+   "AgentFrameworkServlet"
+  ],
+  "Suo5": [
+   "Interceptor",
+   "ControllerHandler",
+   "AgentFrameworkServlet"
+  ],
+  "AntSword": [
+   "Interceptor",
+   "ControllerHandler",
+   "AgentFrameworkServlet"
+  ],
+  "NeoreGeorg": [
+   "Interceptor",
+   "ControllerHandler",
+   "AgentFrameworkServlet"
+  ],
+  "Proxy": [
+   "Interceptor",
+   "ControllerHandler",
+   "AgentFrameworkServlet"
+  ]
+ },
+ "toolParams": {
+  "Godzilla": [
+   {
+    "name": "pass",
+    "label": "pass",
+    "defaultValue": "",
+    "options": []
+   },
+   {
+    "name": "key",
+    "label": "key",
+    "defaultValue": "",
+    "options": []
+   },
+   {
+    "name": "headerName",
+    "label": "headerName",
+    "defaultValue": "User-Agent",
+    "options": []
+   },
+   {
+    "name": "headerValue",
+    "label": "headerValue",
+    "defaultValue": "",
+    "options": []
+   }
+  ],
+  "GodzillaSession": [
+   {
+    "name": "pass",
+    "label": "pass",
+    "defaultValue": "",
+    "options": []
+   },
+   {
+    "name": "key",
+    "label": "key",
+    "defaultValue": "",
+    "options": []
+   },
+   {
+    "name": "headerName",
+    "label": "headerName",
+    "defaultValue": "User-Agent",
+    "options": []
+   },
+   {
+    "name": "headerValue",
+    "label": "headerValue",
+    "defaultValue": "",
+    "options": []
+   }
+  ],
+  "Behinder": [
+   {
+    "name": "pass",
+    "label": "pass",
+    "defaultValue": "",
+    "options": []
+   },
+   {
+    "name": "headerName",
+    "label": "headerName",
+    "defaultValue": "User-Agent",
+    "options": []
+   },
+   {
+    "name": "headerValue",
+    "label": "headerValue",
+    "defaultValue": "",
+    "options": []
+   }
+  ],
+  "Command": [
+   {
+    "name": "paramName",
+    "label": "paramName",
+    "defaultValue": "",
+    "options": []
+   },
+   {
+    "name": "encryptor",
+    "label": "encryptor",
+    "defaultValue": "RAW",
+    "options": [
+     "RAW",
+     "BASE64",
+     "DOUBLE_BASE64"
+    ]
+   },
+   {
+    "name": "implementationClass",
+    "label": "implementationClass",
+    "defaultValue": "RuntimeExec",
+    "options": [
+     "RuntimeExec",
+     "ForkAndExec"
+    ]
+   },
+   {
+    "name": "template",
+    "label": "template",
+    "defaultValue": "{command}",
+    "options": []
+   }
+  ],
+  "Suo5": [
+   {
+    "name": "headerName",
+    "label": "headerName",
+    "defaultValue": "User-Agent",
+    "options": []
+   },
+   {
+    "name": "headerValue",
+    "label": "headerValue",
+    "defaultValue": "",
+    "options": []
+   }
+  ],
+  "AntSword": [
+   {
+    "name": "pass",
+    "label": "pass",
+    "defaultValue": "",
+    "options": []
+   },
+   {
+    "name": "headerName",
+    "label": "headerName",
+    "defaultValue": "User-Agent",
+    "options": []
+   },
+   {
+    "name": "headerValue",
+    "label": "headerValue",
+    "defaultValue": "",
+    "options": []
+   }
+  ],
+  "NeoreGeorg": [
+   {
+    "name": "headerName",
+    "label": "headerName",
+    "defaultValue": "Referer",
+    "options": []
+   },
+   {
+    "name": "headerValue",
+    "label": "headerValue",
+    "defaultValue": "",
+    "options": []
+   }
+  ],
+  "Proxy": [
+   {
+    "name": "headerName",
+    "label": "headerName",
+    "defaultValue": "User-Agent",
+    "options": []
+   },
+   {
+    "name": "headerValue",
+    "label": "headerValue",
+    "defaultValue": "",
+    "options": []
+   }
+  ]
+ },
+ "packers": [
+  "DefaultBase64",
+  "GzipBase64",
+  "Base64URLEncoded",
+  "Jar",
+  "AgentJarWithJDKAttacher",
+  "AgentJarWithJREAttacher",
+  "FilelessAgent"
+ ]
+}

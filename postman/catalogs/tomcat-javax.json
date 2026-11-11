@@ -1,0 +1,305 @@
+{
+ "runtime": {
+  "server": "Tomcat",
+  "serverVersion": "9.0.123",
+  "jakarta": false,
+  "javaVersion": "1.8.0_512",
+  "classVersion": 52,
+  "pid": "1",
+  "basePath": "/range",
+  "agentCapable": true,
+  "servers": [
+   "Tomcat",
+   "Jetty",
+   "Jetty5",
+   "Undertow",
+   "JBoss",
+   "Resin",
+   "Resin2",
+   "WebLogic",
+   "WebSphere",
+   "GlassFish",
+   "TongWeb",
+   "BES",
+   "InforSuite",
+   "Apusic"
+  ]
+ },
+ "servers": [
+  "Tomcat",
+  "Jetty",
+  "Jetty5",
+  "Undertow",
+  "JBoss",
+  "Resin",
+  "Resin2",
+  "WebLogic",
+  "WebSphere",
+  "GlassFish",
+  "TongWeb",
+  "BES",
+  "InforSuite",
+  "Apusic"
+ ],
+ "server": "Tomcat",
+ "matrix": {
+  "Godzilla": [
+   "Listener",
+   "Filter",
+   "Valve",
+   "ProxyValve",
+   "Servlet",
+   "AgentFilterChain",
+   "AgentContextValve",
+   "WebSocket",
+   "RawWebSocket",
+   "Upgrade"
+  ],
+  "GodzillaSession": [
+   "Listener",
+   "Filter",
+   "Valve",
+   "ProxyValve",
+   "Servlet",
+   "AgentFilterChain",
+   "AgentContextValve"
+  ],
+  "Behinder": [
+   "Listener",
+   "Filter",
+   "Valve",
+   "ProxyValve",
+   "Servlet",
+   "AgentFilterChain",
+   "AgentContextValve"
+  ],
+  "Command": [
+   "Listener",
+   "Filter",
+   "Valve",
+   "ProxyValve",
+   "Servlet",
+   "AgentFilterChain",
+   "AgentContextValve",
+   "WebSocket",
+   "RawWebSocket",
+   "Upgrade"
+  ],
+  "Suo5": [
+   "Listener",
+   "Filter",
+   "Valve",
+   "ProxyValve",
+   "Servlet",
+   "AgentFilterChain",
+   "AgentContextValve"
+  ],
+  "AntSword": [
+   "Listener",
+   "Filter",
+   "Valve",
+   "ProxyValve",
+   "Servlet",
+   "AgentFilterChain",
+   "AgentContextValve"
+  ],
+  "NeoreGeorg": [
+   "Listener",
+   "Filter",
+   "Valve",
+   "ProxyValve",
+   "Servlet",
+   "AgentFilterChain",
+   "AgentContextValve"
+  ],
+  "Proxy": [
+   "Listener",
+   "Filter",
+   "Valve",
+   "ProxyValve",
+   "Servlet",
+   "AgentFilterChain",
+   "AgentContextValve",
+   "WebSocket",
+   "RawWebSocket"
+  ]
+ },
+ "toolParams": {
+  "Godzilla": [
+   {
+    "name": "pass",
+    "label": "pass",
+    "defaultValue": "",
+    "options": []
+   },
+   {
+    "name": "key",
+    "label": "key",
+    "defaultValue": "",
+    "options": []
+   },
+   {
+    "name": "headerName",
+    "label": "headerName",
+    "defaultValue": "User-Agent",
+    "options": []
+   },
+   {
+    "name": "headerValue",
+    "label": "headerValue",
+    "defaultValue": "",
+    "options": []
+   }
+  ],
+  "GodzillaSession": [
+   {
+    "name": "pass",
+    "label": "pass",
+    "defaultValue": "",
+    "options": []
+   },
+   {
+    "name": "key",
+    "label": "key",
+    "defaultValue": "",
+    "options": []
+   },
+   {
+    "name": "headerName",
+    "label": "headerName",
+    "defaultValue": "User-Agent",
+    "options": []
+   },
+   {
+    "name": "headerValue",
+    "label": "headerValue",
+    "defaultValue": "",
+    "options": []
+   }
+  ],
+  "Behinder": [
+   {
+    "name": "pass",
+    "label": "pass",
+    "defaultValue": "",
+    "options": []
+   },
+   {
+    "name": "headerName",
+    "label": "headerName",
+    "defaultValue": "User-Agent",
+    "options": []
+   },
+   {
+    "name": "headerValue",
+    "label": "headerValue",
+    "defaultValue": "",
+    "options": []
+   }
+  ],
+  "Command": [
+   {
+    "name": "paramName",
+    "label": "paramName",
+    "defaultValue": "",
+    "options": []
+   },
+   {
+    "name": "encryptor",
+    "label": "encryptor",
+    "defaultValue": "RAW",
+    "options": [
+     "RAW",
+     "BASE64",
+     "DOUBLE_BASE64"
+    ]
+   },
+   {
+    "name": "implementationClass",
+    "label": "implementationClass",
+    "defaultValue": "RuntimeExec",
+    "options": [
+     "RuntimeExec",
+     "ForkAndExec"
+    ]
+   },
+   {
+    "name": "template",
+    "label": "template",
+    "defaultValue": "{command}",
+    "options": []
+   }
+  ],
+  "Suo5": [
+   {
+    "name": "headerName",
+    "label": "headerName",
+    "defaultValue": "User-Agent",
+    "options": []
+   },
+   {
+    "name": "headerValue",
+    "label": "headerValue",
+    "defaultValue": "",
+    "options": []
+   }
+  ],
+  "AntSword": [
+   {
+    "name": "pass",
+    "label": "pass",
+    "defaultValue": "",
+    "options": []
+   },
+   {
+    "name": "headerName",
+    "label": "headerName",
+    "defaultValue": "User-Agent",
+    "options": []
+   },
+   {
+    "name": "headerValue",
+    "label": "headerValue",
+    "defaultValue": "",
+    "options": []
+   }
+  ],
+  "NeoreGeorg": [
+   {
+    "name": "headerName",
+    "label": "headerName",
+    "defaultValue": "Referer",
+    "options": []
+   },
+   {
+    "name": "headerValue",
+    "label": "headerValue",
+    "defaultValue": "",
+    "options": []
+   }
+  ],
+  "Proxy": [
+   {
+    "name": "headerName",
+    "label": "headerName",
+    "defaultValue": "User-Agent",
+    "options": []
+   },
+   {
+    "name": "headerValue",
+    "label": "headerValue",
+    "defaultValue": "",
+    "options": []
+   }
+  ]
+ },
+ "packers": [
+  "DefaultBase64",
+  "GzipBase64",
+  "Base64URLEncoded",
+  "Jar",
+  "AgentJarWithJDKAttacher",
+  "AgentJarWithJREAttacher",
+  "FilelessAgent"
+ ]
+}

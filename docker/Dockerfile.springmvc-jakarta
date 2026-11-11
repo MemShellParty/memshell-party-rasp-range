@@ -1,6 +1,8 @@
 # Spring MVC 6 / Boot 3.3 (jakarta, embedded Tomcat) running the range fat jar.
-FROM docker.1ms.run/library/eclipse-temurin:17-jdk
+ARG BASE_IMAGE=eclipse-temurin:17-jdk
+FROM ${BASE_IMAGE}
 WORKDIR /app
-COPY range-springmvc-jakarta-0.1.0.jar /app/range.jar
+ARG ARTIFACT=range-springmvc-jakarta-*.jar
+COPY ${ARTIFACT} /app/range.jar
 EXPOSE 8080
 CMD ["java", "-jar", "/app/range.jar"]

@@ -1,0 +1,144 @@
+name: images
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+concurrency:
+  group: images-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  artifacts:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+      - run: ./gradlew assemble --no-daemon
+      - id: version
+        run: |
+          version=$(sed -n "s/^[[:space:]]*version = '\([^']*\)'.*/\1/p" build.gradle | head -1)
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: range-artifacts
+          if-no-files-found: error
+          path: |
+            range-war-javax/build/libs/range-war-javax-*.war
+            range-war-jakarta/build/libs/range-war-jakarta-*.war
+            range-springmvc-javax/build/libs/range-springmvc-javax-*.jar
+            range-springmvc-jakarta/build/libs/range-springmvc-jakarta-*.jar
+            range-webflux/build/libs/range-webflux-*.jar
+
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+      - run: ./gradlew :integration-test:test --no-daemon
+
+  postman:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Regenerate collections from catalog snapshots
+        run: python3 -I postman/build.py
+      - name: Fail when committed collections are stale
+        run: git diff --exit-code -- postman
+
+  images:
+    needs: artifacts
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: tomcat-javax
+            dockerfile: docker/Dockerfile.tomcat-javax
+            context: range-war-javax/build/libs
+          - name: tomcat-jakarta
+            dockerfile: docker/Dockerfile.tomcat-jakarta
+            context: range-war-jakarta/build/libs
+          - name: jetty-javax
+            dockerfile: docker/Dockerfile.jetty-javax
+            context: range-war-javax/build/libs
+          - name: springmvc-javax
+            dockerfile: docker/Dockerfile.springmvc-javax
+            context: range-springmvc-javax/build/libs
+          - name: springmvc-jakarta
+            dockerfile: docker/Dockerfile.springmvc-jakarta
+            context: range-springmvc-jakarta/build/libs
+          - name: webflux
+            dockerfile: docker/Dockerfile.webflux
+            context: range-webflux/build/libs
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: range-artifacts
+          path: .
+      - id: vars
+        env:
+          EVENT: ${{ github.event_name }}
+        run: |
+          echo "image_base=ghcr.io/${GITHUB_REPOSITORY,,}" >> "$GITHUB_OUTPUT"
+          if [ "$EVENT" = "pull_request" ]; then
+            echo "platforms=linux/amd64" >> "$GITHUB_OUTPUT"
+          else
+            echo "platforms=linux/amd64,linux/arm64" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        if: github.event_name != 'pull_request'
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ steps.vars.outputs.image_base }}/memshell-range-${{ matrix.name }}
+          tags: |
+            type=raw,value=${{ needs.artifacts.outputs.version }}
+            type=sha,format=short
+            type=raw,value=latest,enable={{is_default_branch}}
+          labels: |
+            org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
+            org.opencontainers.image.title=memshell-range-${{ matrix.name }}
+            org.opencontainers.image.description=Memory-shell injection range, ${{ matrix.name }}
+      - uses: docker/build-push-action@v6
+        with:
+          context: ${{ matrix.context }}
+          file: ${{ matrix.dockerfile }}
+          platforms: ${{ steps.vars.outputs.platforms }}
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+      - name: Summary
+        run: |
+          {
+            echo "### memshell-range-${{ matrix.name }}"
+            echo '```'
+            echo "${{ steps.meta.outputs.tags }}"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

@@ -1,3 +1,5 @@
 # Tomcat 9 (javax) with the range WAR deployed at /range.
-FROM harbor.corp.boundaryx.net/cloudrasp/tomcat:9.0.84-jdk8
-COPY range-war-javax-0.1.0.war /usr/local/tomcat/webapps/range.war
+ARG BASE_IMAGE=tomcat:9.0.123-jdk8-temurin-jammy
+FROM ${BASE_IMAGE}
+ARG ARTIFACT=range-war-javax-*.war
+COPY ${ARTIFACT} /usr/local/tomcat/webapps/range.war

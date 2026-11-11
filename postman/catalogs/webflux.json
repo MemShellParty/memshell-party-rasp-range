@@ -1,0 +1,140 @@
+{
+ "runtime": {
+  "server": "SpringWebFlux",
+  "serverVersion": "unknown",
+  "jakarta": false,
+  "javaVersion": "17.0.17",
+  "classVersion": 61,
+  "pid": "1",
+  "basePath": "",
+  "agentCapable": true,
+  "servers": [
+   "SpringWebFlux"
+  ]
+ },
+ "servers": [
+  "SpringWebFlux"
+ ],
+ "server": "SpringWebFlux",
+ "matrix": {
+  "Godzilla": [
+   "WebFilter",
+   "NettyHandler",
+   "HandlerMethod",
+   "HandlerFunction"
+  ],
+  "Command": [
+   "WebFilter",
+   "NettyHandler",
+   "HandlerMethod",
+   "HandlerFunction"
+  ],
+  "Suo5": [
+   "WebFilter"
+  ],
+  "Proxy": [
+   "WebFilter",
+   "NettyHandler",
+   "HandlerMethod",
+   "HandlerFunction"
+  ]
+ },
+ "toolParams": {
+  "Godzilla": [
+   {
+    "name": "pass",
+    "label": "pass",
+    "defaultValue": "",
+    "options": []
+   },
+   {
+    "name": "key",
+    "label": "key",
+    "defaultValue": "",
+    "options": []
+   },
+   {
+    "name": "headerName",
+    "label": "headerName",
+    "defaultValue": "User-Agent",
+    "options": []
+   },
+   {
+    "name": "headerValue",
+    "label": "headerValue",
+    "defaultValue": "",
+    "options": []
+   }
+  ],
+  "Command": [
+   {
+    "name": "paramName",
+    "label": "paramName",
+    "defaultValue": "",
+    "options": []
+   },
+   {
+    "name": "encryptor",
+    "label": "encryptor",
+    "defaultValue": "RAW",
+    "options": [
+     "RAW",
+     "BASE64",
+     "DOUBLE_BASE64"
+    ]
+   },
+   {
+    "name": "implementationClass",
+    "label": "implementationClass",
+    "defaultValue": "RuntimeExec",
+    "options": [
+     "RuntimeExec",
+     "ForkAndExec"
+    ]
+   },
+   {
+    "name": "template",
+    "label": "template",
+    "defaultValue": "{command}",
+    "options": []
+   }
+  ],
+  "Suo5": [
+   {
+    "name": "headerName",
+    "label": "headerName",
+    "defaultValue": "User-Agent",
+    "options": []
+   },
+   {
+    "name": "headerValue",
+    "label": "headerValue",
+    "defaultValue": "",
+    "options": []
+   }
+  ],
+  "Proxy": [
+   {
+    "name": "headerName",
+    "label": "headerName",
+    "defaultValue": "User-Agent",
+    "options": []
+   },
+   {
+    "name": "headerValue",
+    "label": "headerValue",
+    "defaultValue": "",
+    "options": []
+   }
+  ]
+ },
+ "packers": [
+  "DefaultBase64",
+  "GzipBase64",
+  "Base64URLEncoded",
+  "Jar",
+  "AgentJarWithJDKAttacher",
+  "AgentJarWithJREAttacher",
+  "FilelessAgent"
+ ]
+}

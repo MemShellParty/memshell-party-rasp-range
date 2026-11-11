@@ -1,35 +1,49 @@
 #!/usr/bin/env bash
-# Build every range target for both architectures and push it to Harbor.
+# Build the range images and push them to a registry.
 #
-#   ./docker/build.sh                 # build and push all seven
-#   ONLY=jetty-javax ./docker/build.sh
-#   PUSH=false ./docker/build.sh      # keep the image in the local store
+#   ./docker/build.sh                              # six public images to GHCR
+#   REGISTRY=harbor.example/cloudrasp ./docker/build.sh
+#   PUSH=false PLATFORMS=linux/amd64 ./docker/build.sh   # local amd64 images
+#   ONLY=tomcat-javax,webflux ./docker/build.sh
+#   INCLUDE_BES=1 ./docker/build.sh                # add the internal BES image
+#
+# The six public images use Docker Hub base images. BES uses the internal
+# Harbor base and stays out of the default list.
 set -euo pipefail
 
 root=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
-registry=${REGISTRY:-harbor.corp.boundaryx.net/cloudrasp}
+registry=${REGISTRY:-ghcr.io/MemShellParty/memshell-party-rasp-range}
 tag=${TAG:-0.1.0}
 platforms=${PLATFORMS:-linux/amd64,linux/arm64}
 push=${PUSH:-true}
 only=${ONLY:-}
 
+if [[ "$push" != "true" && "$platforms" == *,* ]]; then
+  echo "error: --load supports one platform, set PLATFORMS=linux/amd64" >&2
+  exit 1
+fi
+
+# name|dockerfile|build context|artifact glob
 images=(
-  "tomcat-javax|Dockerfile.tomcat-javax|range-war-javax/build/libs"
-  "tomcat-jakarta|Dockerfile.tomcat-jakarta|range-war-jakarta/build/libs"
-  "jetty-javax|Dockerfile.jetty-javax|range-war-javax/build/libs"
-  "bes-javax|Dockerfile.bes-javax|range-war-javax/build/libs"
-  "springmvc-javax|Dockerfile.springmvc-javax|range-springmvc-javax/build/libs"
-  "springmvc-jakarta|Dockerfile.springmvc-jakarta|range-springmvc-jakarta/build/libs"
-  "webflux|Dockerfile.webflux|range-webflux/build/libs"
+  "tomcat-javax|Dockerfile.tomcat-javax|range-war-javax/build/libs|range-war-javax-*.war"
+  "tomcat-jakarta|Dockerfile.tomcat-jakarta|range-war-jakarta/build/libs|range-war-jakarta-*.war"
+  "jetty-javax|Dockerfile.jetty-javax|range-war-javax/build/libs|range-war-javax-*.war"
+  "springmvc-javax|Dockerfile.springmvc-javax|range-springmvc-javax/build/libs|range-springmvc-javax-*.jar"
+  "springmvc-jakarta|Dockerfile.springmvc-jakarta|range-springmvc-jakarta/build/libs|range-springmvc-jakarta-*.jar"
+  "webflux|Dockerfile.webflux|range-webflux/build/libs|range-webflux-*.jar"
 )
+if [[ "${INCLUDE_BES:-0}" == "1" ]]; then
+  images+=("bes-javax|Dockerfile.bes-javax|range-war-javax/build/libs|range-war-javax-*.war")
+fi
 
 for entry in "${images[@]}"; do
-  IFS='|' read -r name file context <<<"$entry"
+  IFS='|' read -r name file context artifact <<<"$entry"
   if [[ -n "$only" && ",$only," != *",$name,"* ]]; then
     continue
   fi
   ref="$registry/memshell-range-$name:$tag"
-  args=(--platform "$platforms" -f "$root/docker/$file" -t "$ref")
+  args=(--platform "$platforms" -f "$root/docker/$file" -t "$ref"
+        --build-arg "ARTIFACT=$artifact")
   if [[ "$push" == "true" ]]; then
     args+=(--push)
   else

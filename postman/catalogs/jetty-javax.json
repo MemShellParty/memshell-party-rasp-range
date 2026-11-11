@@ -1,0 +1,285 @@
+{
+ "runtime": {
+  "server": "Jetty",
+  "serverVersion": "9.4.58.v20250814",
+  "jakarta": false,
+  "javaVersion": "1.8.0_472",
+  "classVersion": 52,
+  "pid": "1",
+  "basePath": "/range",
+  "agentCapable": true,
+  "servers": [
+   "Tomcat",
+   "Jetty",
+   "Jetty5",
+   "Undertow",
+   "JBoss",
+   "Resin",
+   "Resin2",
+   "WebLogic",
+   "WebSphere",
+   "GlassFish",
+   "TongWeb",
+   "BES",
+   "InforSuite",
+   "Apusic"
+  ]
+ },
+ "servers": [
+  "Tomcat",
+  "Jetty",
+  "Jetty5",
+  "Undertow",
+  "JBoss",
+  "Resin",
+  "Resin2",
+  "WebLogic",
+  "WebSphere",
+  "GlassFish",
+  "TongWeb",
+  "BES",
+  "InforSuite",
+  "Apusic"
+ ],
+ "server": "Jetty",
+ "matrix": {
+  "Godzilla": [
+   "Listener",
+   "Filter",
+   "Servlet",
+   "Handler",
+   "Customizer",
+   "AgentHandler",
+   "WebSocket",
+   "RawWebSocket"
+  ],
+  "GodzillaSession": [
+   "Listener",
+   "Filter",
+   "Servlet"
+  ],
+  "Behinder": [
+   "Listener",
+   "Filter",
+   "Servlet",
+   "AgentHandler"
+  ],
+  "Command": [
+   "Listener",
+   "Filter",
+   "Servlet",
+   "Handler",
+   "Customizer",
+   "AgentHandler",
+   "WebSocket",
+   "RawWebSocket"
+  ],
+  "Suo5": [
+   "Listener",
+   "Filter",
+   "Servlet",
+   "Customizer",
+   "AgentHandler"
+  ],
+  "AntSword": [
+   "Listener",
+   "Filter",
+   "Servlet",
+   "AgentHandler"
+  ],
+  "NeoreGeorg": [
+   "Listener",
+   "Filter",
+   "Servlet",
+   "AgentHandler"
+  ],
+  "Proxy": [
+   "Listener",
+   "Filter",
+   "Servlet",
+   "Handler",
+   "Customizer",
+   "AgentHandler",
+   "WebSocket",
+   "RawWebSocket"
+  ]
+ },
+ "toolParams": {
+  "Godzilla": [
+   {
+    "name": "pass",
+    "label": "pass",
+    "defaultValue": "",
+    "options": []
+   },
+   {
+    "name": "key",
+    "label": "key",
+    "defaultValue": "",
+    "options": []
+   },
+   {
+    "name": "headerName",
+    "label": "headerName",
+    "defaultValue": "User-Agent",
+    "options": []
+   },
+   {
+    "name": "headerValue",
+    "label": "headerValue",
+    "defaultValue": "",
+    "options": []
+   }
+  ],
+  "GodzillaSession": [
+   {
+    "name": "pass",
+    "label": "pass",
+    "defaultValue": "",
+    "options": []
+   },
+   {
+    "name": "key",
+    "label": "key",
+    "defaultValue": "",
+    "options": []
+   },
+   {
+    "name": "headerName",
+    "label": "headerName",
+    "defaultValue": "User-Agent",
+    "options": []
+   },
+   {
+    "name": "headerValue",
+    "label": "headerValue",
+    "defaultValue": "",
+    "options": []
+   }
+  ],
+  "Behinder": [
+   {
+    "name": "pass",
+    "label": "pass",
+    "defaultValue": "",
+    "options": []
+   },
+   {
+    "name": "headerName",
+    "label": "headerName",
+    "defaultValue": "User-Agent",
+    "options": []
+   },
+   {
+    "name": "headerValue",
+    "label": "headerValue",
+    "defaultValue": "",
+    "options": []
+   }
+  ],
+  "Command": [
+   {
+    "name": "paramName",
+    "label": "paramName",
+    "defaultValue": "",
+    "options": []
+   },
+   {
+    "name": "encryptor",
+    "label": "encryptor",
+    "defaultValue": "RAW",
+    "options": [
+     "RAW",
+     "BASE64",
+     "DOUBLE_BASE64"
+    ]
+   },
+   {
+    "name": "implementationClass",
+    "label": "implementationClass",
+    "defaultValue": "RuntimeExec",
+    "options": [
+     "RuntimeExec",
+     "ForkAndExec"
+    ]
+   },
+   {
+    "name": "template",
+    "label": "template",
+    "defaultValue": "{command}",
+    "options": []
+   }
+  ],
+  "Suo5": [
+   {
+    "name": "headerName",
+    "label": "headerName",
+    "defaultValue": "User-Agent",
+    "options": []
+   },
+   {
+    "name": "headerValue",
+    "label": "headerValue",
+    "defaultValue": "",
+    "options": []
+   }
+  ],
+  "AntSword": [
+   {
+    "name": "pass",
+    "label": "pass",
+    "defaultValue": "",
+    "options": []
+   },
+   {
+    "name": "headerName",
+    "label": "headerName",
+    "defaultValue": "User-Agent",
+    "options": []
+   },
+   {
+    "name": "headerValue",
+    "label": "headerValue",
+    "defaultValue": "",
+    "options": []
+   }
+  ],
+  "NeoreGeorg": [
+   {
+    "name": "headerName",
+    "label": "headerName",
+    "defaultValue": "Referer",
+    "options": []
+   },
+   {
+    "name": "headerValue",
+    "label": "headerValue",
+    "defaultValue": "",
+    "options": []
+   }
+  ],
+  "Proxy": [
+   {
+    "name": "headerName",
+    "label": "headerName",
+    "defaultValue": "User-Agent",
+    "options": []
+   },
+   {
+    "name": "headerValue",
+    "label": "headerValue",
+    "defaultValue": "",
+    "options": []
+   }
+  ]
+ },
+ "packers": [
+  "DefaultBase64",
+  "GzipBase64",
+  "Base64URLEncoded",
+  "Jar",
+  "AgentJarWithJDKAttacher",
+  "AgentJarWithJREAttacher",
+  "FilelessAgent"
+ ]
+}
